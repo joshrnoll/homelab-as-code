@@ -1,0 +1,31 @@
+machine:
+  
+  ###########################
+  # STATIC IP CONFIGURATION #
+  ###########################
+
+  network:
+    hostname: talos-prod-worker-02
+    interfaces:
+      - deviceSelector:
+          physical: true 
+        addresses:
+          - 10.0.30.84/24
+        routes:
+          - network: 0.0.0.0/0 # The route's network.
+            gateway: 10.0.30.1 # The route's gateway.
+        dhcp: false
+  
+  ################################
+  # MOUNTS REQUIRED FOR LONGHORN #
+  ################################
+  
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw

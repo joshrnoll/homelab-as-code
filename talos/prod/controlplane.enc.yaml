@@ -1,0 +1,581 @@
+# Indicates the schema used to decode the contents.
+version: v1alpha1
+# Enable verbose logging to the console.
+debug: false
+persist: true
+# Provides machine specific configuration options.
+machine:
+    # Defines the role of the machine within the cluster.
+    type: controlplane
+    # The `token` is used by a machine to join the PKI of the cluster.
+    token: ENC[AES256_GCM,data:qgBG0c2WgG6Z92QVV7E9T4a+9egXbpo=,iv:5HaOLhUBCHIung/Oq3oFMLp9Bpq8M/0ikM01mZt6e2s=,tag:kUZZAEDj9TZE49qFXP6YqA==,type:str]
+    # The root certificate authority of the PKI.
+    ca:
+        crt: ENC[AES256_GCM,data:4DQsRzwKs/o87+T4ujMk6A6HBWOWHol7WgsaWFUVO5ZBDiya1fyFXxrmXkTXEcC3GvpY9vAe9FSmR+MBN4fjGEXcW+B1UCPr8wFwkbPSZUXMXQa6Fz2izlBRhLFBhgJf2zcqLzyIdpD89zXvHBQe1A70EqKgUqifcGVqj/CLMppOJR2KF6BRzmQySymh/oGy+VYC+hZPM+uIfalmbRZ5ok76+Cat8zhzyC81l4OybZKOkYKeoFfdUa+qbHku05ytYTOpXT/wa1SR+dnQPD5b0zws+TiQE08F/+mZ51YpL7BeZv3DlQGv1rUvNLrBkAwP02xVbuHmHHKk1SKkuDaGUI9dTM1Dvi7qe+hXL4xPIwEMGdX0FjviL6Ku5NDstY/5DT1dC7RpaumbIHG8sh4XQDSBZVDnILnFLLPnPuDqwYRGjR6rcZG6bbCV1zcbRnQHgksKWosp4x+RFjJlU12T/wJYFcTCBpVTQgOJPZ0h9lVK9TkX6/KqINxtunzYvUw2xx2KUyR30tyH8zYbAVQ33Ko3oS+nQLc1i1ayYqcFDKGFiYvkuvG5QctV9/p10IA/ZXnZ4gKV8r9ReAn33zYhok/szifBaGm0vy3G1NfXZEB2sweALGJuSyz4DG+ovREC80SnOygZeBXaVSkE7bX7DuMAf6bP4tgRKUIcgwiTPG1/EIfO6tdP7QiyMDue0+dl5jhnXdd+yZjYFxg5Fre/SfO/zIG/Z9O/iXKFC9oMQCiq93lP728r5HaTWf7rMvB+pmywgLdufLE9Tuh0OMtuvS6OJ1joNsv9hKzI0SduWswYnPpkWslW/oq8eSTMPqenDkMJH7v9oyHLUZMOrcxM2PAKVPZ7uFFDxVUjhMOyb6LhLVAG,iv:JExHyNIOhiM0wyiSEBE8K7sUQU1C4ohryd/Fc0I9ZQE=,tag:y+GOj2dU1ahqhI046UnMwg==,type:str]
+        key: ENC[AES256_GCM,data:5m+ZK+fh0TsVdhQ8vjF91ROCZrf7XEtee/mLl9rqGzP+JYAK/LlCP0puKfm/CnfBZeShL0WZkXjYVX+tDX11WNWqmd9AuLPQX4DG4HZ1BEl/3OAUU/IW/A60HrB/NjRjvn2E+4OfU0x68v2q29XIdXF+gXpavWs9oC0KBCCcgvyM5EeZoiazFqMQFf2r65bt21/b25gJ8Zvv9kXaN0tnuKI0Fq00wE7j/D2DnEF19lHI7te4,iv:ONeoM5haYgiKB+x5y0g/jBaSjwYhlfGgyUIrX1uG95w=,tag:UjKgZk9HZKqoXF7pfH3HpQ==,type:str]
+    # Extra certificate subject alternative names for the machine's certificate.
+    certSANs: []
+    #   # Uncomment this to enable SANs.
+    #   - 10.0.0.10
+    #   - 172.16.0.10
+    #   - 192.168.0.10
+    # Used to provide additional options to the kubelet.
+    kubelet:
+        # The `image` field is an optional reference to an alternative kubelet image.
+        image: ghcr.io/siderolabs/kubelet:v1.32.0
+        # Enable container runtime default Seccomp profile.
+        defaultRuntimeSeccompProfileEnabled: true
+        # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
+        disableManifestsDirectory: true
+        # # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
+        # clusterDNS:
+        #     - 10.96.0.10
+        #     - 169.254.2.53
+        # # The `extraArgs` field is used to provide additional flags to the kubelet.
+        # extraArgs:
+        #     key: value
+        # # The `extraMounts` field is used to add additional mounts to the kubelet container.
+        # extraMounts:
+        #     - destination: /var/lib/example # Destination is the absolute path where the mount will be placed in the container.
+        #       type: bind # Type specifies the mount kind.
+        #       source: /var/lib/example # Source specifies the source path of the mount.
+        #       # Options are fstab style mount options.
+        #       options:
+        #         - bind
+        #         - rshared
+        #         - rw
+        # # The `extraConfig` field is used to provide kubelet configuration overrides.
+        # extraConfig:
+        #     serverTLSBootstrap: true
+        # # The `KubeletCredentialProviderConfig` field is used to provide kubelet credential configuration.
+        # credentialProviderConfig:
+        #     apiVersion: kubelet.config.k8s.io/v1
+        #     kind: CredentialProviderConfig
+        #     providers:
+        #         - apiVersion: credentialprovider.kubelet.k8s.io/v1
+        #           defaultCacheDuration: 12h
+        #           matchImages:
+        #             - '*.dkr.ecr.*.amazonaws.com'
+        #             - '*.dkr.ecr.*.amazonaws.com.cn'
+        #             - '*.dkr.ecr-fips.*.amazonaws.com'
+        #             - '*.dkr.ecr.us-iso-east-1.c2s.ic.gov'
+        #             - '*.dkr.ecr.us-isob-east-1.sc2s.sgov.gov'
+        #           name: ecr-credential-provider
+        # # The `nodeIP` field is used to configure `--node-ip` flag for the kubelet.
+        # nodeIP:
+        #     # The `validSubnets` field configures the networks to pick kubelet node IP from.
+        #     validSubnets:
+        #         - 10.0.0.0/8
+        #         - '!10.0.0.3/32'
+        #         - fdc7::/16
+    # Provides machine specific network configuration options.
+    network:
+        interfaces:
+            vip:
+                ip: 10.0.30.25
+    # # `interfaces` is used to define the network interface configuration.
+    # interfaces:
+    #     - interface: enp0s1 # The interface name.
+    #       # Assigns static IP addresses to the interface.
+    #       addresses:
+    #         - 192.168.2.0/24
+    #       # A list of routes associated with the interface.
+    #       routes:
+    #         - network: 0.0.0.0/0 # The route's network (destination).
+    #           gateway: 192.168.2.1 # The route's gateway (if empty, creates link scope route).
+    #           metric: 1024 # The optional metric for the route.
+    #       mtu: 1500 # The interface's MTU.
+    #       
+    #       # # Picks a network device using the selector.
+    #       # # select a device with bus prefix 00:*.
+    #       # deviceSelector:
+    #       #     busPath: 00:* # PCI, USB bus prefix, supports matching by wildcard.
+    #       # # select a device with mac address matching `*:f0:ab` and `virtio` kernel driver.
+    #       # deviceSelector:
+    #       #     hardwareAddr: '*:f0:ab' # Device hardware (MAC) address, supports matching by wildcard.
+    #       #     driver: virtio_net # Kernel driver, supports matching by wildcard.
+    #       # # select a device with bus prefix 00:*, a device with mac address matching `*:f0:ab` and `virtio` kernel driver.
+    #       # deviceSelector:
+    #       #     - busPath: 00:* # PCI, USB bus prefix, supports matching by wildcard.
+    #       #     - hardwareAddr: '*:f0:ab' # Device hardware (MAC) address, supports matching by wildcard.
+    #       #       driver: virtio_net # Kernel driver, supports matching by wildcard.
+    #       # # Bond specific options.
+    #       # bond:
+    #       #     # The interfaces that make up the bond.
+    #       #     interfaces:
+    #       #         - enp2s0
+    #       #         - enp2s1
+    #       #     # Picks a network device using the selector.
+    #       #     deviceSelectors:
+    #       #         - busPath: 00:* # PCI, USB bus prefix, supports matching by wildcard.
+    #       #         - hardwareAddr: '*:f0:ab' # Device hardware (MAC) address, supports matching by wildcard.
+    #       #           driver: virtio_net # Kernel driver, supports matching by wildcard.
+    #       #     mode: 802.3ad # A bond option.
+    #       #     lacpRate: fast # A bond option.
+    #       # # Bridge specific options.
+    #       # bridge:
+    #       #     # The interfaces that make up the bridge.
+    #       #     interfaces:
+    #       #         - enxda4042ca9a51
+    #       #         - enxae2a6774c259
+    #       #     # Enable STP on this bridge.
+    #       #     stp:
+    #       #         enabled: true # Whether Spanning Tree Protocol (STP) is enabled.
+    #       # # Configure this device as a bridge port.
+    #       # bridgePort:
+    #       #     master: br0 # The name of the bridge master interface
+    #       # # Indicates if DHCP should be used to configure the interface.
+    #       # dhcp: true
+    #       # # DHCP specific options.
+    #       # dhcpOptions:
+    #       #     routeMetric: 1024 # The priority of all routes received via DHCP.
+    #       # # Wireguard specific configuration.
+    #       # # wireguard server example
+    #       # wireguard:
+    #       #     privateKey: ABCDEF... # Specifies a private key configuration (base64 encoded).
+    #       #     listenPort: 51111 # Specifies a device's listening port.
+    #       #     # Specifies a list of peer configurations to apply to a device.
+    #       #     peers:
+    #       #         - publicKey: ABCDEF... # Specifies the public key of this peer.
+    #       #           endpoint: 192.168.1.3 # Specifies the endpoint of this peer entry.
+    #       #           # AllowedIPs specifies a list of allowed IP addresses in CIDR notation for this peer.
+    #       #           allowedIPs:
+    #       #             - 192.168.1.0/24
+    #       # # wireguard peer example
+    #       # wireguard:
+    #       #     privateKey: ABCDEF... # Specifies a private key configuration (base64 encoded).
+    #       #     # Specifies a list of peer configurations to apply to a device.
+    #       #     peers:
+    #       #         - publicKey: ABCDEF... # Specifies the public key of this peer.
+    #       #           endpoint: 192.168.1.2:51822 # Specifies the endpoint of this peer entry.
+    #       #           persistentKeepaliveInterval: 10s # Specifies the persistent keepalive interval for this peer.
+    #       #           # AllowedIPs specifies a list of allowed IP addresses in CIDR notation for this peer.
+    #       #           allowedIPs:
+    #       #             - 192.168.1.0/24
+    #       # # Virtual (shared) IP address configuration.
+    #       # # layer2 vip example
+    #       # vip:
+    #       #     ip: 172.16.199.55 # Specifies the IP address to be used.
+    # # Used to statically set the nameservers for the machine.
+    # nameservers:
+    #     - 8.8.8.8
+    #     - 1.1.1.1
+    # # Used to statically set arbitrary search domains.
+    # searchDomains:
+    #     - example.org
+    #     - example.com
+    # # Allows for extra entries to be added to the `/etc/hosts` file
+    # extraHostEntries:
+    #     - ip: 192.168.1.100 # The IP of the host.
+    #       # The host alias.
+    #       aliases:
+    #         - example
+    #         - example.domain.tld
+    # # Configures KubeSpan feature.
+    # kubespan:
+    #     enabled: true # Enable the KubeSpan feature.
+    # Used to provide instructions for installations.
+    install:
+        # The disk used for installations.
+        disk: /dev/sda
+        # Allows for supplying the image used to perform the installation.
+        image: factory.talos.dev/installer/58e4656b31857557c8bad0585e1b2ee53f7446f4218f3fae486aa26d4f6470d8:v1.9.4
+        # Indicates if the installation disk should be wiped at installation time.
+        wipe: false
+        # # Look up disk using disk attributes like model, size, serial and others.
+        # diskSelector:
+        #     size: 4GB # Disk size.
+        #     model: WDC* # Disk model `/sys/block/<dev>/device/model`.
+        #     busPath: /pci0000:00/0000:00:17.0/ata1/host0/target0:0:0/0:0:0:0 # Disk bus path.
+        # # Allows for supplying extra kernel args via the bootloader.
+        # extraKernelArgs:
+        #     - talos.platform=metal
+        #     - reboot=k
+        # # Allows for supplying additional system extension images to install on top of base Talos image.
+        # extensions:
+        #     - image: ghcr.io/siderolabs/gvisor:20220117.0-v1.0.0 # System extension image.
+    # Used to configure the machine's container image registry mirrors.
+    registries: {}
+    # # Specifies mirror configuration for each registry host namespace.
+    # mirrors:
+    #     ghcr.io:
+    #         # List of endpoints (URLs) for registry mirrors to use.
+    #         endpoints:
+    #             - https://registry.insecure
+    #             - https://ghcr.io/v2/
+    # # Specifies TLS & auth configuration for HTTPS image registries.
+    # config:
+    #     registry.insecure:
+    #         # The TLS configuration for the registry.
+    #         tls:
+    #             insecureSkipVerify: true # Skip TLS server certificate verification (not recommended).
+    #             
+    #             # # Enable mutual TLS authentication with the registry.
+    #             # clientIdentity:
+    #             #     crt: LS0tIEVYQU1QTEUgQ0VSVElGSUNBVEUgLS0t
+    #             #     key: LS0tIEVYQU1QTEUgS0VZIC0tLQ==
+    #         
+    #         # # The auth configuration for this registry.
+    #         # auth:
+    #         #     username: username # Optional registry authentication.
+    #         #     password: password # Optional registry authentication.
+    # Features describe individual Talos features that can be switched on or off.
+    features:
+        # Enable role-based access control (RBAC).
+        rbac: true
+        # Enable stable default hostname.
+        stableHostname: true
+        # Enable checks for extended key usage of client certificates in apid.
+        apidCheckExtKeyUsage: true
+        # Enable XFS project quota support for EPHEMERAL partition and user disks.
+        diskQuotaSupport: true
+        # KubePrism - local proxy/load balancer on defined port that will distribute
+        kubePrism:
+            # Enable KubePrism support - will start local load balancing proxy.
+            enabled: true
+            # KubePrism port.
+            port: 7445
+        # Configures host DNS caching resolver.
+        hostDNS:
+            # Enable host DNS caching resolver.
+            enabled: true
+            # Use the host DNS resolver as upstream for Kubernetes CoreDNS pods.
+            forwardKubeDNSToHost: true
+            # # Configure Talos API access from Kubernetes pods.
+            # kubernetesTalosAPIAccess:
+            #     enabled: true # Enable Talos API access from Kubernetes pods.
+            #     # The list of Talos API roles which can be granted for access from Kubernetes pods.
+            #     allowedRoles:
+            #         - os:reader
+            #     # The list of Kubernetes namespaces Talos API access is available from.
+            #     allowedKubernetesNamespaces:
+            #         - kube-system
+    # Configures the node labels for the machine.
+    nodeLabels:
+        node.kubernetes.io/exclude-from-external-load-balancers: ""
+        # # Provides machine specific control plane configuration options.
+        # # ControlPlane definition example.
+        # controlPlane:
+        #     # Controller manager machine specific configuration options.
+        #     controllerManager:
+        #         disabled: false # Disable kube-controller-manager on the node.
+        #     # Scheduler machine specific configuration options.
+        #     scheduler:
+        #         disabled: true # Disable kube-scheduler on the node.
+        # # Used to provide static pod definitions to be run by the kubelet directly bypassing the kube-apiserver.
+        # # nginx static pod.
+        # pods:
+        #     - apiVersion: v1
+        #       kind: pod
+        #       metadata:
+        #         name: nginx
+        #       spec:
+        #         containers:
+        #             - image: nginx
+        #               name: nginx
+        # # Used to partition, format and mount additional disks.
+        # # MachineDisks list example.
+        # disks:
+        #     - device: /dev/sdb # The name of the disk to use.
+        #       # A list of partitions to create on the disk.
+        #       partitions:
+        #         - mountpoint: /var/mnt/extra # Where to mount the partition.
+        #           
+        #           # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
+        #           # # Human readable representation.
+        #           # size: 100 MB
+        #           # # Precise value in bytes.
+        #           # size: 1073741824
+        # # Allows the addition of user specified files.
+        # # MachineFiles usage example.
+        # files:
+        #     - content: '...' # The contents of the file.
+        #       permissions: 0o666 # The file's permissions in octal.
+        #       path: /tmp/file.txt # The path of the file.
+        #       op: append # The operation to use
+        # # The `env` field allows for the addition of environment variables.
+        # # Environment variables definition examples.
+        # env:
+        #     GRPC_GO_LOG_SEVERITY_LEVEL: info
+        #     GRPC_GO_LOG_VERBOSITY_LEVEL: "99"
+        #     https_proxy: http://SERVER:PORT/
+        # env:
+        #     GRPC_GO_LOG_SEVERITY_LEVEL: error
+        #     https_proxy: https://USERNAME:PASSWORD@SERVER:PORT/
+        # env:
+        #     https_proxy: http://DOMAIN\USERNAME:PASSWORD@SERVER:PORT/
+        # # Used to configure the machine's time settings.
+        # # Example configuration for cloudflare ntp server.
+        # time:
+        #     disabled: false # Indicates if the time service is disabled for the machine.
+        #     # description: |
+        #     servers:
+        #         - time.cloudflare.com
+        #     bootTimeout: 2m0s # Specifies the timeout when the node time is considered to be in sync unlocking the boot sequence.
+        # # Used to configure the machine's sysctls.
+        # # MachineSysctls usage example.
+        # sysctls:
+        #     kernel.domainname: talos.dev
+        #     net.ipv4.ip_forward: "0"
+        #     net/ipv6/conf/eth0.100/disable_ipv6: "1"
+        # # Used to configure the machine's sysfs.
+        # # MachineSysfs usage example.
+        # sysfs:
+        #     devices.system.cpu.cpu0.cpufreq.scaling_governor: performance
+        # # Machine system disk encryption configuration.
+        # systemDiskEncryption:
+        #     # Ephemeral partition encryption.
+        #     ephemeral:
+        #         provider: luks2 # Encryption provider to use for the encryption.
+        #         # Defines the encryption keys generation and storage method.
+        #         keys:
+        #             - # Deterministically generated key from the node UUID and PartitionLabel.
+        #               nodeID: {}
+        #               slot: 0 # Key slot number for LUKS2 encryption.
+        #               
+        #               # # KMS managed encryption key.
+        #               # kms:
+        #               #     endpoint: https://192.168.88.21:4443 # KMS endpoint to Seal/Unseal the key.
+        #         
+        #         # # Cipher kind to use for the encryption. Depends on the encryption provider.
+        #         # cipher: aes-xts-plain64
+        #         # # Defines the encryption sector size.
+        #         # blockSize: 4096
+        #         # # Additional --perf parameters for the LUKS2 encryption.
+        #         # options:
+        #         #     - no_read_workqueue
+        #         #     - no_write_workqueue
+        # # Configures the udev system.
+        # udev:
+        #     # List of udev rules to apply to the udev system
+        #     rules:
+        #         - SUBSYSTEM=="drm", KERNEL=="renderD*", GROUP="44", MODE="0660"
+        # # Configures the logging system.
+        # logging:
+        #     # Logging destination.
+        #     destinations:
+        #         - endpoint: tcp://1.2.3.4:12345 # Where to send logs. Supported protocols are "tcp" and "udp".
+        #           format: json_lines # Logs format.
+        # # Configures the kernel.
+        # kernel:
+        #     # Kernel modules to load.
+        #     modules:
+        #         - name: brtfs # Module name.
+        # # Configures the seccomp profiles for the machine.
+        # seccompProfiles:
+        #     - name: audit.json # The `name` field is used to provide the file name of the seccomp profile.
+        #       # The `value` field is used to provide the seccomp profile.
+        #       value:
+        #         defaultAction: SCMP_ACT_LOG
+        # # Override (patch) settings in the default OCI runtime spec for CRI containers.
+        # # override default open file limit
+        # baseRuntimeSpecOverrides:
+        #     process:
+        #         rlimits:
+        #             - hard: 1024
+        #               soft: 1024
+        #               type: RLIMIT_NOFILE
+        # # Configures the node annotations for the machine.
+        # # node annotations example.
+        # nodeAnnotations:
+        #     customer.io/rack: r13a25
+        # # Configures the node taints for the machine. Effect is optional.
+        # # node taints example.
+        # nodeTaints:
+        #     exampleTaint: exampleTaintValue:NoSchedule
+# Provides cluster specific configuration options.
+cluster:
+    # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
+    id: ENC[AES256_GCM,data:JI08Ccadajlc5rmawkyFG9AHjAh/bAckV9XMuDY+CmjfwLqSONzT9TXttj4=,iv:pfUUmOkr4mxVHH49geW4HrVyOJ0G5GrV7EjCeMTfQK4=,tag:Mc20p8pyoCMyDghGpBpU3w==,type:str]
+    # Shared secret of cluster (base64 encoded random 32 bytes).
+    secret: ENC[AES256_GCM,data:jA6h+CXm+diT34u4rELmwZWEzu/w1ieeONDZTpd7hRFpBFxWlqDeqjC+EFA=,iv:9tPtLs03GdtWqMHqal4GSxm0DdjlbI0ON9xCuWLo1Mk=,tag:y3flJJXCQElP57pt71HeFw==,type:str]
+    # Provides control plane specific configuration options.
+    controlPlane:
+        # Endpoint is the canonical controlplane endpoint, which can be an IP address or a DNS hostname.
+        endpoint: https://10.0.30.25:6443
+    # Configures the cluster's name.
+    clusterName: production
+    # Provides cluster specific network configuration options.
+    network:
+        # The domain used by Kubernetes DNS.
+        dnsDomain: cluster.local
+        # The pod subnet CIDR.
+        podSubnets:
+            - 10.244.0.0/16
+        # The service subnet CIDR.
+        serviceSubnets:
+            - 10.96.0.0/12
+            # # The CNI used.
+            # cni:
+            #     name: custom # Name of CNI to use.
+            #     # URLs containing manifests to apply for the CNI.
+            #     urls:
+            #         - https://docs.projectcalico.org/archive/v3.20/manifests/canal.yaml
+    # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
+    token: ENC[AES256_GCM,data:Yfsb8PhXnkYyGMIhb4kQW0WV4sI6R6g=,iv:BiD2N8hEHfU3mJmVwIk0OJivfriv1PpIZmbCdSWJ/Ig=,tag:fxN6Qpky4br5hwF0F8vY0A==,type:str]
+    # A key used for the [encryption of secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
+    secretboxEncryptionSecret: ENC[AES256_GCM,data:2YQI/0W7qlnKp4ZUQcvxcJJ9BUbNpyqX3s+DnAnXhfhCszOwG2yXDKpwdCc=,iv:Le/+a7AmifOsATeVhNVsOrLhZzRHdW1NuBC2IPvygfQ=,tag:kdu2GTA6JP5cpKrUeTsG+g==,type:str]
+    # The base64 encoded root certificate authority used by Kubernetes.
+    ca:
+        crt: ENC[AES256_GCM,data:XjXq0UW4u743HOJ1YPiuG3ftmEPG1jWELD9VXy9s7plsAW/fBIp7otdq4oZNSsid1iqWplp8COr7PcwAttbL1xo8rEVEqMadCWjqFO4KLbjltir88EFsjwL+oeq+X2WS5vB8NRDK0GkIPjDw6jVTJEQrurrGnDh10NVMAOncncWnS0Vpuw+TqrLg/7dw4nLEV2iT2i+9IbczYfPIfurws6vjcLLx71/Oe16wp8aW3NkQ7poLXZqmzRFWuzuIisahEaK1mVu5Csml/F2qmeiM1GWlZcPPJpgT8VT5tDvlb6o21N4ji/5JQfNmcnne5CQkcbaHlYXxIH3fAtbXG5cMHDecCE3GbyeDmQvmR5TwLoQdAAs3m7bpaqdn3VSqqmION31uVuYoBIxSRcYLgi73TBz/CWH4nNJBJDknLJp9xFl9Qd4qJGEyYdNW2bzf6zFaeTjtE1LX4iDyI+HX1HCRvFv+rrFHKSya0wdhtJh0MC7dOu2GGY9qutv9vAjSk7DfeAWzCYP7C13R3xEBJDLQp5p0f9kxdSX1J6gQRPQMdqZb/1gdG6PHA1rHlD+vlZ9L/qCg9sDkTePM7CkAltnKogRZFhHiSGDslhVGYJ+VKjU/GRJrzslheRslNW35HrfogialAO5eLpugtcDrzXZHU/FOATSFoZW/oVD24hC4ZgCkTwpU2XGX/dFtzIUxqRzhzYWe2jdq/iC1f9t+WZPtrfSIpfz1YqthjyCu1B79gA+kvZK0bI0QRNAkjjeCub+HMgst2ReENey8xGogK2Cpo5TJWpJRbbYjultfgb7Q4T9N1lq/V8Ue6tuZmss4AlIEqzoudvuK76WwFvhcz5PuMqJj0BcXFVI+8x/zEklGeWlDLGrEtEVnX1JwAiVQZsnyBA32qU009S+ZYBCjVnDm5mDK039QNm6CMS3WWni9eFyjOwaMBzxgpd7yD/IOQQRcn4Hf91PZHc3o4Sp7CJiH0MANGYchvw5xqXn1DuuXQpYkJbwJ1crX/QyRa67zwZkRhAOm3egncsZSGa3eEueaEnxPFEU=,iv:fbAyshrIXX8xCGS9qUu4Lt/4eXS4FDu8ovcpePkTxuA=,tag:9GwAf0+as48xyHzYUlI9Rw==,type:str]
+        key: ENC[AES256_GCM,data:NRIsjzMh1Subp4HMWs6DXTcCUvjUE/uWwa0X5blIi5DSt/FxkQT2SecBLRj+2e9/mIphK1VhexCm++sr1pDVbqH60ptJnumyL1uTm5DQYv4/wXMQ6BpF1okhdJo1zHOEopnskinCEAdVRG9bFdews0A8EIHwgRfHSlGHNr+XoWeuycl5oN7pxOgRjfoGWmK10UkTAcsuvR17/4krhpih7Ie4BVvN1DDoBmhvKrGsiBpT1716VmnWG37g44gtBglarK27LC8LwVc5rXgxPhlWqRsi0qtZTa6Wbqz0cAjdECJE0SIgv07K2rkcprE5CSoWzBIhJmJmScVo6II7FoIEckzQBNlS1QlQXPUuVGaG4J528X13W4TJheL5K9kCSgscHhmf7MUyc2U8UVIWj+pFew==,iv:v38kJwGM/pHQwtpTcj3zN/n7GksNWZCK4ny7OJcdSgw=,tag:4u1Zpe3f+SUWVF+GhOa+Rg==,type:str]
+    # The base64 encoded aggregator certificate authority used by Kubernetes for front-proxy certificate generation.
+    aggregatorCA:
+        crt: ENC[AES256_GCM,data:hg7fNeJHzmDRERnQlwloL+LAMtLxGJWuo1r7Kqr9QNHNkPmRiOnUPvla92y3pgD7Ote4s4G8oHR6uJ+fxuwqS4XUxVxY4M+zhf/OL8tY51T6HGOaq4Dga5eK8EvIIQ0ao9cD5kbkmHffsypEU+YzOEYLl0lZNvjTwfsRAnBgggKpGMFf7Tf74AXXqKx91PsOfxxdAJnzWDsV94Mfy+93YVApUCHvaGQ4/oOtbgdGAdIPk5KjZyBleDn140LKKowZHpDMkGkeQ6r8Vaw24I6rmHH8JCOsy1z03SFW/zqxSEHhj/TF5n6KyOH/2fYkQfPscPhy/JdGitfSqN212aJnpVnQmUZhnVRu9hfEliVj87mOecK2LwmxiL0meAe/qfAYECUnxXzbWd0az5TIP8n/sdLVZCT5ucpVP1XuusKFA1ia81jA5AL9A+M5KgOeQI8rZ7M++3Ch+pFHRfe1L7dqpK7rnSg05ZVRZlC2RjZZN85HscQt3ATYPGVq7vGiMtZpfT4egXv0FAFKHF8OaEUqpNFusgU28RkbyNpOrvFBQjnYupvINxjfqBAYbwmZbLhDy3w2KAAwCzoaCrTbtjRDM+r+Ylm386z4dgd6s9r51WFxYQACO32gN/QcAERgcHbEHuYldf4SkcLBVxbI3cOY0KoP/X9u9uHhWRxkhRUe5PmCo7k2ePQtGcxz6rjNc2ybUa+HRnQPjNwVjvaEzioc/8Yya9G2icBFEnKsTDXEJDaclSLZVHjVjzA1I11/brkExOmheJ2W4iN+zIESdFtn/LHZ0df6PIrxGCamBOe+0/B2uJoGH2jHz6A89zAEWIKNXvYIcAtpVg8ul+LvD+zSxeiKeWQaeLyGZxv+3iGtSj+EEYGHQHcWqSunLFi/Z5z2yCJ9EEdTjHs/M5zqZ0HYIIIQD0VIzab3JNUI0UsQnHJRp+Sbb6VfNcM84TTLE0yd,iv:T4kh+7L25lZfRXzoO9xxm3iVxakO9Aayj6RL03zLSIE=,tag:/QYep6kPRDf2UR0NohpBXA==,type:str]
+        key: ENC[AES256_GCM,data:tL20c43wWSnPGVBHSofyl7jSijfkcFqsnmjv+FE5/rlEBjV8uNFKfr8ZlT+dwyZ1IpBgedBt/Hu1RR75NLGTQZ5ogVfG1qtC4OSW2mW8+fiIOL/0dIarVbFjTRRSJQ5X1W/Iyt5jlcVSg1zd42RMZDcX+2q08x0kXSW+w8WFU7500WZXfMs9qrz8BrdWtOtJHal9XzCn2wnf6PilBf643YsXSeTD0G7HvZ0p/PlUutnKe8bQLOsapPr0+4+lGnN/uEvUZ9XfTtSrjFstq8G6HoSuqHBwN7ZUjuU1Rx3R2sB2tM46ZiUuuqQ68txspWBOaNhU5O2EX5IdM54j8i5sY3cq9kXo8FYbvhd9CShZkRoxm3Xgeg7xJ0o6BjpP9WioBlEFmvWMvqg3emoCDizNKw==,iv:KPPpoOKPHl2+TmvVXwApt2a2gJ5To95w7CagFKC91kE=,tag:weq9GOIevLk2mmou6SzoGw==,type:str]
+    # The base64 encoded private key for service account token generation.
+    serviceAccount:
+        key: ENC[AES256_GCM,data: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,iv:MbtJroDz7a6Wo7qiIkkstBsKq7xJSrvWsqJhoVizKkI=,tag:TnfPaQN8E+d61pymqwzm6g==,type:str]
+    # API server specific configuration options.
+    apiServer:
+        # The container image used in the API server manifest.
+        image: registry.k8s.io/kube-apiserver:v1.32.0
+        # Extra certificate subject alternative names for the API server's certificate.
+        certSANs:
+            - 10.0.30.25
+        # Disable PodSecurityPolicy in the API server and default manifests.
+        disablePodSecurityPolicy: true
+        # Configure the API server admission plugins.
+        admissionControl:
+            # Name is the name of the admission controller.
+            - name: PodSecurity
+              # Configuration is an embedded configuration object to be used as the plugin's
+              configuration:
+                apiVersion: pod-security.admission.config.k8s.io/v1alpha1
+                defaults:
+                    audit: restricted
+                    audit-version: latest
+                    enforce: baseline
+                    enforce-version: latest
+                    warn: restricted
+                    warn-version: latest
+                exemptions:
+                    namespaces:
+                        - kube-system
+                    runtimeClasses: []
+                    usernames: []
+                kind: PodSecurityConfiguration
+        # Configure the API server audit policy.
+        auditPolicy:
+            apiVersion: audit.k8s.io/v1
+            kind: Policy
+            rules:
+                - level: Metadata
+                  # # Configure the API server authorization config. Node and RBAC authorizers are always added irrespective of the configuration.
+                  # authorizationConfig:
+                  #     - type: Webhook # Type is the name of the authorizer. Allowed values are `Node`, `RBAC`, and `Webhook`.
+                  #       name: webhook # Name is used to describe the authorizer.
+                  #       # webhook is the configuration for the webhook authorizer.
+                  #       webhook:
+                  #         connectionInfo:
+                  #             type: InClusterConfig
+                  #         failurePolicy: Deny
+                  #         matchConditionSubjectAccessReviewVersion: v1
+                  #         matchConditions:
+                  #             - expression: has(request.resourceAttributes)
+                  #             - expression: '!(\''system:serviceaccounts:kube-system\'' in request.groups)'
+                  #         subjectAccessReviewVersion: v1
+                  #         timeout: 3s
+                  #     - type: Webhook # Type is the name of the authorizer. Allowed values are `Node`, `RBAC`, and `Webhook`.
+                  #       name: in-cluster-authorizer # Name is used to describe the authorizer.
+                  #       # webhook is the configuration for the webhook authorizer.
+                  #       webhook:
+                  #         connectionInfo:
+                  #             type: InClusterConfig
+                  #         failurePolicy: NoOpinion
+                  #         matchConditionSubjectAccessReviewVersion: v1
+                  #         subjectAccessReviewVersion: v1
+                  #         timeout: 3s
+    # Controller manager server specific configuration options.
+    controllerManager:
+        # The container image used in the controller manager manifest.
+        image: registry.k8s.io/kube-controller-manager:v1.32.0
+    # Kube-proxy server-specific configuration options
+    proxy:
+        # The container image used in the kube-proxy manifest.
+        image: registry.k8s.io/kube-proxy:v1.32.0
+        # # Disable kube-proxy deployment on cluster bootstrap.
+        # disabled: false
+    # Scheduler server specific configuration options.
+    scheduler:
+        # The container image used in the scheduler manifest.
+        image: registry.k8s.io/kube-scheduler:v1.32.0
+    # Configures cluster member discovery.
+    discovery:
+        # Enable the cluster membership discovery feature.
+        enabled: true
+        # Configure registries used for cluster member discovery.
+        registries:
+            # Kubernetes registry uses Kubernetes API server to discover cluster members and stores additional information
+            kubernetes:
+                # Disable Kubernetes discovery registry.
+                disabled: true
+            # Service registry is using an external service to push and pull information about cluster members.
+            service: {}
+            # # External service endpoint.
+            # endpoint: https://discovery.talos.dev/
+    # Etcd specific configuration options.
+    etcd:
+        # The `ca` is the root certificate authority of the PKI.
+        ca:
+            crt: ENC[AES256_GCM,data:aH1S/xwghQ0Vfyh4vOmluG9p7fmjzzsIxn7fQofm/7JMAhejED+US6Qn0yGpHNHIwRc82zPSIELiRVaez4wTvTPEi7QX+QW2yJrvlnkQ3Gg/BD9vPdn84sHMdOA2sIC9Opwm83hpGXuficbtpJ/I2a0c/49pwfJu7dpPOPiL4lMHVuvlvUVz3aQOTDkkU9jEYooN074+rm5IPBVcDep50tJSCIzzXCZCjHaNfDNWCj2hjl0l9fXQcF9qTzlKSATq5sk3FS26ksCBRGqfr3EPECNNfpqEEhbKcMGLyrSntOSkWFsllIFs3GHULS0HwioiCX9G8725oonpMwMH2SA6Gp6kUlKNbkiafmGIpNEwQIjUBO+ptQpuy0qaoehTtLzqDdOBJdvnRAVFAUpfMISpB/YZHHjTDpZ6hO6qClzImyOBd2kGFanRU+2gxuFp1MUn0XmI4YDdoBZ33CwnfN2OmRlBRTPlpvcUTf8NzJv6rQ71UXfEdfIR/uawRVnMTSCeQiejLcR0rQVSPq9tCCD8yo+FB215D+6ckpvEXyv/HzJ1TsLhTH32eI14rI7OGmPzIB5AqeAs+Lt8DKLd100aT7RvXwJv+atsmpOqVtLsM3YwKWBrX19Zm7YU8HcFsUvTqCrKyQ1sp8i73SCZryYP34IAeYJItjEg9Dp92B3Sq65l8MtlSneH8QNIMjsQfASamMR+iHDQ68QOTz7qrthqXUyI40/HpFXJlBpfSidSs96s3zlVV+ZSG0dN+dGUxw/X+9gFmFauwlcXkmVDeYpOYABzvQtFJTZ9rE7POqQ6uf2CpJT3cZCRaqnskot2YgPDBO6V1dGN5D6GLY4Esetm/gayf6JniKyE17M5X7nuELpMgEMIqI4Vevxx4JsPU6C/68GRETsh4FX19dXES6CjlDsdmDPmyXydFMnCMLT5u4d6BfcDl+nrtXUzQugkz52+FqaJgjN7oaiFdX4DGUOVb0l5KPq7Az65a0F4nv0L3kf9aCRtRwqxdwTdENTFxQxIDa+Ffg==,iv:W5BWF5GBm4XDUchQPla3Lav2H0D+HRJmtPCeCipA4dE=,tag:8Cx0NAconiPLr7oBD2MTjA==,type:str]
+            key: ENC[AES256_GCM,data:7aocA4ZXMpjHOU3XNb5ayLOaXQjzWtbMU3PeM0jFXXMyPepn3YssbVieZEfID2Cjs1RZPepoG1t4PUZUteXiv5bivOyRNgrZfG75cGL8dmluJLMis5ligWlDidvsUIYetZxXgnbSNZXJta18KYH2kiH7pyRgq2NMMLlCzTpEIF9YGpehVYBS0td5t1kB9sI0ceTbSID/1IgvzAqZK8S4LUkonxXeGVEoWuLFWajsOye1WLMrHml+sjw4Q9wNgDYeIrwVf3qcTlfjpRu1TZWaZxKJvUOyin48RggAzQ1TBKpb6KGBzMMp03cXCq5g7OYiKKzmY21rX9Qv58kZvRu5lBvA7LdrkMjNRUSSqVuhc3n3bHFM/mGx+zg+iG1IsbRFZQl8KY9LP9sKGCIRWLoC8A==,iv:DZ50f491cUbCi2ozfYFAPPoFhp+yrTj6EInjn/lm2yo=,tag:zjbAx1S9VMUxkexReQcwvQ==,type:str]
+            # # The container image used to create the etcd service.
+            # image: gcr.io/etcd-development/etcd:v3.5.17
+            # # The `advertisedSubnets` field configures the networks to pick etcd advertised IP from.
+            # advertisedSubnets:
+            #     - 10.0.0.0/8
+    # A list of urls that point to additional manifests.
+    extraManifests: []
+    #   - https://www.example.com/manifest1.yaml
+    #   - https://www.example.com/manifest2.yaml
+    # A list of inline Kubernetes manifests.
+    inlineManifests: []
+    #   - name: namespace-ci # Name of the manifest.
+    #     contents: |- # Manifest contents as a string.
+    #       apiVersion: v1
+    #       kind: Namespace
+    #       metadata:
+    #       	name: ci
+# # A key used for the [encryption of secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
+# # Decryption secret example (do not use in production!).
+# aescbcEncryptionSecret: z01mye6j16bspJYtTB/5SFX8j7Ph4JXxM2Xuu4vsBPM=
+# # Core DNS specific configuration options.
+# coreDNS:
+#     image: registry.k8s.io/coredns/coredns:v1.12.0 # The `image` field is an override to the default coredns image.
+# # External cloud provider configuration.
+# externalCloudProvider:
+#     enabled: true # Enable external cloud provider.
+#     # A list of urls that point to additional manifests for an external cloud provider.
+#     manifests:
+#         - https://raw.githubusercontent.com/kubernetes/cloud-provider-aws/v1.20.0-alpha.0/manifests/rbac.yaml
+#         - https://raw.githubusercontent.com/kubernetes/cloud-provider-aws/v1.20.0-alpha.0/manifests/aws-cloud-controller-manager-daemonset.yaml
+# # A map of key value pairs that will be added while fetching the extraManifests.
+# extraManifestHeaders:
+#     Token: "1234567"
+#     X-ExtraInfo: info
+# # Settings for admin kubeconfig generation.
+# adminKubeconfig:
+#     certLifetime: 1h0m0s # Admin kubeconfig certificate lifetime (default is 1 year).
+# # Allows running workload on control-plane nodes.
+# allowSchedulingOnControlPlanes: true
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlaVR2NHF0RUlwNWJwRkVq
+            N2pOQjJ6dEhNVWQxeHZyV3NTRDI1aHhZdlZvCkRZU2VYdkhTRlhrK2I4NlJMRXdV
+            R3RxYjF1VUtDY3lGcEdBNTh6cWpUa00KLS0tIHNINUxsRDMzZDNzMDJheFB5YXFH
+            TmN5NG1LVG1BNnFoZDFNTEdSbDBvYVEK8lvuKELjKOLSNnSkOoe0sllX5B+MY/Cv
+            3pFza9lxMBQyKSPAX1RSPQQRxz0LK80FgZknY3XaleJlQmggRlVQFA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-23T20:28:03Z"
+    mac: ENC[AES256_GCM,data:UvgOLVwxsUaekoPHNtvvuv0KMR3pn+mGZu3AYUuRW75aDKR50C9sPkNscGNYIeXDXW9S0JG3BNrJZgpeYpmi7azoaFqWj2FcLBNBa8YUPKSDrRbspddiOq6UnVF8aGkk5JzxMBxWxavAk9kbacnTOIoffrT+aN4ra9ejb1AU+yU=,iv:AbuHwLoyXnxuHJGJ0YSNbFDzZoDYuale7ORMp07Lgt0=,tag:QGqnokoJtd14tC+V+IrEBQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(crt|key|token|id|secret|secretboxEncryptionSecret)$
+    version: 3.9.4

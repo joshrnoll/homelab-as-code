@@ -1,0 +1,25 @@
+apiVersion: v1alpha1
+kind: ExtensionServiceConfig
+name: tailscale
+environment:
+    - ENC[AES256_GCM,data:7XGH9eR5Hw70dkWFXLS2Pi+wMxROGTsYU9drXkn6wggStMqNBnd7+GokjzOd2r8fL5QgTH1c3mbk3u4QsGcclKRKdRH1X+PrPQ==,iv:38wDFMVSUx2udARl1PTV95EijOKJssKbatAQZNOZt78=,tag:v2nZm1u5xd5YnXdgAKnDHw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrMFBOZG9XY0JCT2xzcUpT
+            Vjk4cDZ1blR1TGN1ZVBiVnRCMDVoY00weDJvCjBGNU1Rek1kY0VwRkx3L2poKytU
+            aWF1bmxHTGxFTHo5N3FGbVgwU3p2d2MKLS0tIDA3NE5LRjBQa1RUMmlpNWJuYThU
+            YTNldWpLZFVZTjMvNzNSU1loMFQ1TkkKkYlcwPUgEugGaGzODcYGe/7x69foiJJh
+            bxxkSpSNmCSJAQLFIBbD3gxHfKPJNHl5r/Ryl4Js/zv7nSEQSPR3Ew==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-22T11:50:58Z"
+    mac: ENC[AES256_GCM,data:8cuBSwqJQ9srI49gcnTHRc1IAolxJ8HYpbiSA2cK9S3U+ovLqg8sMc+srNhJ40Kka8K0/vcQKBdcOcO1otNy+7e5JY9p62OQrK4kWeGLNB92Bs81zL0STElVHjokvepzBMyYE02AjmrW0FtGWkUpHpFVS9xXsHvZC1ePMIg4/bM=,iv:fOUTkfRN4JQibpEw/2XhrHTz3U1+ZmQva3FuLqH5bWA=,tag:dPnL07O8mqV3c3dYvI50CA==,type:str]
+    pgp: []
+    encrypted_regex: ^(environment)$
+    version: 3.9.4
