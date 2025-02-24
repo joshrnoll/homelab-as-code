@@ -1,0 +1,4 @@
+controlplane.yaml
+tailscale.patch.yaml
+worker.yaml
+talosconfig
