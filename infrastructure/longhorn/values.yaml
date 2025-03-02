@@ -1,0 +1,6 @@
+defaultSettings:
+  defaultReplicaCount: 1
+persistence:
+  reclaimPolicy: Retain
+  defaultClassReplicaCount: 1
+
