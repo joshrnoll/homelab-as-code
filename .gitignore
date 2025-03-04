@@ -2,4 +2,4 @@ controlplane.yaml
 tailscale.patch.yaml
 worker.yaml
 talosconfig
-traefik/values.yaml
+*/traefik/values.yaml
