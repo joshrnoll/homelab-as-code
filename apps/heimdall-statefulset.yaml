@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: heimdall-service
+spec:
+  selector:
+    app: heimdall
+  type: LoadBalancer
+  loadBalancerClass: tailscale
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: heimdall
+  labels:
+    app: heimdall
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: heimdall
+  serviceName: "heimdall"
+  replicas: 2
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: heimdall
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: heimdall
+        image: linuxserver/heimdall
+        ports:
+        - containerPort: 80
+          name: heimdall-port
+        volumeMounts: # Volume must be created along with volumeMount (see next below)
+        - name: heimdall-config
+          mountPath: /config # Path within the container, like the right side of a docker bind mount -- /tmp/data:/app/data
+  volumeClaimTemplates:
+  - metadata:
+      name: heimdall-config
+    spec:
+      accessModes: 
+        - ReadWriteOnce
+      storageClassName: longhorn
+      resources:
+        requests:
+          storage: 1Gi

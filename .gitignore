@@ -3,3 +3,4 @@ tailscale.patch.yaml
 worker.yaml
 talosconfig
 */traefik/values.yaml
+*-secret.yaml
