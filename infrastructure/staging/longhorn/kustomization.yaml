@@ -4,32 +4,25 @@ resources:
   - ../../base/longhorn/helmrelease.yaml
   - ../../base/longhorn/helmrepository.yaml
 patches:
-  - patch: |-
-      apiVersion: helm.toolkit.fluxcd.io/v2beta1
+  - target:
       kind: HelmRelease
-      metadata:
-        name: longhorn
-        namespace: longhorn-system
-      spec:
-        values: |
-          defaultSettings
-            defaultReplicaCount: 1
-          persistence:
-            reclaimPolicy:
-              defaultClassReplicaCount: 1
-  # - target:
-  #     kind: HelmRelease
-  #     name: longhorn
-  #   patch: |-
-  #     - op: add
-  #       path: /spec/values/defaultSettings/defaultReplicaCount
-  #       value: 1
-  # - target:
-  #     kind: HelmRelease
-  #     name: longhorn
-  #   patch: |-
-  #     - op: add
-  #       path: /spec/values/persistence/reclaimPolicy/defaultClassReplicaCount
-  #       value: 1
+      name: longhorn
+    patch: |-
+      - op: add
+        path: /spec/values/defaultSettings
+  - target:
+      kind: HelmRelease
+      name: longhorn
+    patch: |-
+      - op: add
+        path: /spec/values/defaultSettings/defaultReplicaCount
+        value: 1
+  - target:
+      kind: HelmRelease
+      name: longhorn
+    patch: |-
+      - op: add
+        path: /spec/values/persistence/reclaimPolicy/defaultClassReplicaCount
+        value: 1
 
   
