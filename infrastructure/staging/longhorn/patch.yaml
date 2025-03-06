@@ -7,4 +7,5 @@ spec:
   defaultSettings:
     defaultReplicaCount: 1
   persistence:
+    reclaimPolicy: Delete
     defaultClassReplicaCount: 1
