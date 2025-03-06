@@ -7,23 +7,6 @@ patches:
   - target:
       kind: HelmRelease
       name: longhorn
-    patch: |-
-      - op: add
-        path: /spec/values/defaultSettings
-        value: {}
-  - target:
-      kind: HelmRelease
-      name: longhorn
-    patch: |-
-      - op: add
-        path: /spec/values/defaultSettings/defaultReplicaCount
-        value: 1
-  - target:
-      kind: HelmRelease
-      name: longhorn
-    patch: |-
-      - op: add
-        path: /spec/values/persistence/reclaimPolicy/defaultClassReplicaCount
-        value: 1
+    path: patch.yaml
 
   
