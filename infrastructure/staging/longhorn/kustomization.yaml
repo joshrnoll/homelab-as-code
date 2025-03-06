@@ -4,7 +4,7 @@ resources:
   - ../../base/longhorn/helmrelease.yaml
   - ../../base/longhorn/helmrepository.yaml
 patches:
-  - target:
-      kind: HelmRelease
-      name: longhorn
-    path: patch.yaml
+  - path: patch.yaml
+    target:
+        kind: HelmRelease
+        name: longhorn
