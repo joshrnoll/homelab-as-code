@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-values
+  namespace: traefik
+data:
+  values: |
+    image:
+      repository: traefik
+      tag: v3.3.3
+      pullPolicy: IfNotPresent
+    globalArguments:
+      - "--global.sendanonymoususage=false"
+      - "--global.checknewversion=false"
+    additionalArguments:
+      - "--serversTransport.insecureSkipVerify=true"
+    ports:
+      websecure:
+        tls:
+          enabled: true
+          certResolver: cloudflare
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true  
+    persistence:
+      enabled: true
+      size: 128Mi
+      storageClass: longhorn
+      accessMode: ReadWriteMany
+      path: /data
+    deployment:
+      enabled: true
+      replicas: 3
+      initContainers:
+        - name: volume-permissions
+          image: busybox:latest
+          command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+          volumeMounts:
+          - mountPath: /data
+            name: data
+    service:
+      enabled: true
+      type: LoadBalancer
+      annotations:
+        tailscale.com/expose: "true"
+      spec:
+        loadBalancerClass: tailscale  
+    certificatesResolvers:
+      cloudflare:
+        acme:
+          storage: /data/acme.json
+          caServer: https://acme-v02.api.letsencrypt.org/directory # prod (default)
+          # caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging
+          dnsChallenge:
+            provider: cloudflare
+            #disablePropagationCheck: true # uncomment this if you have issues pulling certificates through cloudflare, By setting this flag to true disables the need to wait for the propagation of the TXT record to all authoritative name servers.
+            #delayBeforeCheck: 60s # uncomment along with disablePropagationCheck if needed to ensure the TXT record is ready before verification is attempted 
+            resolvers:
+              - "1.1.1.1:53"
+              - "1.0.0.1:53"
+    env:
+      - name: CF_DNS_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: cloudflareApiKey
+            name: traefik-secrets
+    logs:
+      general:
+        level: ERROR
+      access:
+        enabled: false

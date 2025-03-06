@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: traefik
+      version: "*"
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+      interval: 5m
+  values:
+    valuesFrom:
+    - kind: ConfigMap
+      name: traefik-values
+      valuesKey: values
+    - kind: Secret
+      name: traefik-secrets
+      valuesKey: values
