@@ -8,9 +8,6 @@ patches:
       kind: HelmRelease
       name: longhorn
     patch: |-
-  - target:
-      kind: HelmRelease
-      name: longhorn
       - op: add
         path: /spec/values/defaultSettings
         value: {}
