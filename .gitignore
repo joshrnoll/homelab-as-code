@@ -4,3 +4,4 @@ worker.yaml
 talosconfig
 values.yaml
 *-secret.yaml
+age-key.yaml
