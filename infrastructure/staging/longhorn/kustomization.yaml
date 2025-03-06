@@ -8,5 +8,3 @@ patches:
       kind: HelmRelease
       name: longhorn
     path: patch.yaml
-
-  
