@@ -1,9 +1,9 @@
-apiVersion: v1
-kind: ConfigMap
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
 metadata:
-  name: traefik-values
+  name: traefik
   namespace: traefik
-data:
-  values: |
+spec:
+  values:
     deployment:
       replicas: 1
