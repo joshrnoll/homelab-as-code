@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../base/longhorn/helmrelease.yaml
   - ../../base/longhorn/helmrepository.yaml
+  - ../../base/longhorn/namespace.yaml
   - ../../base/longhorn/longhorn-values.yaml
 patches:
   - path: patch.yaml
