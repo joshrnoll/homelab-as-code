@@ -6,5 +6,5 @@ resources:
 patches:
   - path: patch.yaml
     target:
-        kind: HelmRelease
-        name: longhorn
+      kind: HelmRelease
+      name: longhorn

@@ -4,7 +4,8 @@ metadata:
   name: longhorn
   namespace: longhorn-system
 spec:
-  defaultSettings:
-    defaultReplicaCount: 1
-  persistence:
-    defaultClassReplicaCount: 1
+  values:
+    defaultSettings:
+      defaultReplicaCount: 1
+    persistence:
+      defaultClassReplicaCount: 1
