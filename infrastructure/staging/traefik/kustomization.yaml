@@ -5,10 +5,7 @@ resources:
   - ../../base/traefik/helmrepository.yaml
   - ../../base/traefik/traefik-values.yaml
 patches:
-  - target: 
+  - path: patch.yaml
+    target: 
       kind: ConfigMap
       name: traefik-values
-    patch: |-
-      - op: replace
-        path: /data/values/deployment/replicas
-        value: 1
