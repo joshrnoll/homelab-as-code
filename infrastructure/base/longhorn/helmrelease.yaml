@@ -16,4 +16,4 @@ spec:
       interval: 5m
   values:
     persistence:
-      reclaimPolicy: Delete
+      reclaimPolicy: Retain
