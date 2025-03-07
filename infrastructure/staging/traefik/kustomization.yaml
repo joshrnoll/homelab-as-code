@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../base/traefik/helmrelease.yaml
   - ../../base/traefik/helmrepository.yaml
+  - ../../base/traefik/namespace.yaml
   - ../../base/traefik/traefik-values.yaml
 patches:
   - path: patch.yaml
