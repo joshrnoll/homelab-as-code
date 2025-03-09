@@ -4,16 +4,6 @@ resources:
   - ../../base/traefik/helmrelease.yaml
   - ../../base/traefik/helmrepository.yaml
   - ../../base/traefik/namespace.yaml
-configurations:
-  - kustomizeconfig.yaml
-configMapGenerator:
-  - name: traefik-values
-    files:
-      - values=traefik-values.yaml
-secretGenerator:
-  - name: traefik-secrets
-    files:
-      - values=../../../secrets/traefik-secret-values.yaml
 patches:
   - path: patch.yaml
     target: 
