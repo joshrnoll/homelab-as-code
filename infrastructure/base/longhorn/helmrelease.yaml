@@ -15,7 +15,5 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    valuesFrom:
-    - kind: ConfigMap
-      name: traefik-values
-      valuesKey: values
+    persistence:
+      reclaimPolicy: Retain

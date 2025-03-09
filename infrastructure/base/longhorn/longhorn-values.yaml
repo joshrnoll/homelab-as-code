@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: longhorn-values
-  namespace: longhorn-system
-data:
-  values: |
-    persistence:
-      reclaimPolicy: Retain

@@ -1,20 +1,40 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: tailscale
-  namespace: tailscale
+    name: tailscale
+    namespace: tailscale
 spec:
-  interval: 5m
-  chart:
-    spec:
-      chart: tailscale-operator
-      version: "*"
-      sourceRef:
-        kind: HelmRepository
-        name: tailscale
-        namespace: tailscale
-      interval: 5m
-  values:
-    valuesFrom:
-    - kind: Secret
-      name: tailscale-secrets
+    interval: 5m
+    chart:
+        spec:
+            chart: tailscale-operator
+            version: '*'
+            sourceRef:
+                kind: HelmRepository
+                name: tailscale
+                namespace: tailscale
+            interval: 5m
+    values:
+        oauth:
+            clientId: ENC[AES256_GCM,data:0PtCyC/tLDiojr3gOH87t6c=,iv:z3vHdfiDAFNX9YVRb2SXTsoNe8HOh+O/GTsd4lPtL08=,tag:hvQbkBOgzJeqJwLDePzUFg==,type:str]
+            clientSecret: ENC[AES256_GCM,data:k0Xv/aswkxNwuZ7GMk46S1/mtw7gCltjZSnKjXfWhh7t4BcsSNEzHYepfv/oyUP4jV2SmIQ63vE/+INSdQk0,iv:91LhLpT+hpwKPlRJYwRMZ8Nn+LcQzNtro1bgnof0DXs=,tag:s8lryg/xEo3vq2mUL3CtoQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKNlFKbzY0N2FRZERpdXY4
+            aGNDeitDeEV2S09xVS94SVZpTElTUzl1NlhVClM3a2wwMy8xZWt4aTM4c1JMcGIv
+            UmFhd2NEWGRKbUxzS2FqZ1hGQTAvNmcKLS0tIFQ3Yng4ZTJjMjdwbEhPTGYrd2Qy
+            VWpzUThXTzR4RGg3OXNCdHh0QWJjRVkK45QzgMntm0iKoCvkOlMQ3PzcMO+r2HGI
+            TGr3SfxGze9H1+c10iHfwOXYCLaYtRQWcZXrs3rEthMm6ETUezieIg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-09T18:49:26Z"
+    mac: ENC[AES256_GCM,data:CA3W2YoKA10TYo0rijg5leJQ98ASSCpYPy5lQhYlSQOhy9JVzSoDi4QPsRBezMPzLFd27RKfJKs7K9+3VZGhkF+NG1Qz68rO9wtIzhvaO/lWau7g+87HYwM0kH0XeNagfGNyPQBHU3fAlW58YNQFigwNYcHUMjeeIRNuoyE31mU=,iv:0E7OqDuZGtJquGPvfoEr2+FUo4CH+QGC8b4bq1RCq3c=,tag:J/VdfVXVbpyNI3jCjXV4RQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(oauth)$
+    version: 3.9.4

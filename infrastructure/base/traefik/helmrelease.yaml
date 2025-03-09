@@ -1,25 +1,110 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: traefik
-  namespace: traefik
+    name: traefik
+    namespace: traefik
 spec:
-  interval: 5m
-  timeout: 15m
-  chart:
-    spec:
-      chart: traefik
-      version: "*"
-      sourceRef:
-        kind: HelmRepository
-        name: traefik
-        namespace: flux-system
-      interval: 5m
-  values:
-    valuesFrom:
-    - kind: ConfigMap
-      name: traefik-values
-      valuesKey: values
-    - kind: Secret
-      name: traefik-secrets
-      valuesKey: values
+    interval: 5m
+    timeout: 15m
+    chart:
+        spec:
+            chart: traefik
+            version: '*'
+            sourceRef:
+                kind: HelmRepository
+                name: traefik
+                namespace: flux-system
+            interval: 5m
+    values:
+        image:
+            repository: traefik
+            tag: v3.3.3
+            pullPolicy: IfNotPresent
+        globalArguments:
+            - --global.sendanonymoususage=false
+            - --global.checknewversion=false
+        additionalArguments:
+            - --serversTransport.insecureSkipVerify=true
+        ports:
+            websecure:
+                tls:
+                    enabled: true
+                    certResolver: cloudflare
+            web:
+                redirections:
+                    entryPoint:
+                        to: websecure
+                        scheme: https
+                        permanent: true
+        persistence:
+            enabled: true
+            size: 128Mi
+            storageClass: longhorn
+            accessMode: ReadWriteMany
+            path: /data
+        deployment:
+            enabled: true
+            replicas: 3
+            initContainers:
+                - name: volume-permissions
+                  image: busybox:latest
+                  command:
+                    - sh
+                    - -c
+                    - touch /data/acme.json; chmod -v 600 /data/acme.json
+                  volumeMounts:
+                    - mountPath: /data
+                      name: data
+        service:
+            enabled: true
+            type: LoadBalancer
+            annotations:
+                tailscale.com/expose: "true"
+            spec:
+                loadBalancerClass: tailscale
+        certificatesResolvers:
+            cloudflare:
+                acme:
+                    storage: /data/acme.json
+                    email: ENC[AES256_GCM,data:k0NEhPnNN6M1vaeq1ckWhzgV5R36BGw=,iv:A2kbZBhlylNSRdh6e18kHrXqDjhMP6gpYUg8znTvdB8=,tag:xFkZDIP/O6GgxGuo0nBzVA==,type:str]
+                    # prod (default)
+                    caServer: https://acme-v02.api.letsencrypt.org/directory
+                    # caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging
+                    dnsChallenge:
+                        provider: cloudflare
+                        #disablePropagationCheck: true # uncomment this if you have issues pulling certificates through cloudflare, By setting this flag to true disables the need to wait for the propagation of the TXT record to all authoritative name servers.
+                        #delayBeforeCheck: 60s # uncomment along with disablePropagationCheck if needed to ensure the TXT record is ready before verification is attempted 
+                        resolvers:
+                            - 1.1.1.1:53
+                            - 1.0.0.1:53
+        env:
+            - name: CF_DNS_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                    key: apiKey
+                    name: cloudflare-creds
+        logs:
+            general:
+                level: ERROR
+            access:
+                enabled: false
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFZVBLOTdXVkF3RHNyZmtk
+            bWRoMEhicGxpQ2lOSGhsbmxFUlJVOGpyRTJnCjFoaGdHazJzWG1GT3JYVnVHRUU0
+            aHVoendKTDJaSGUyVG5scEdmVlU5SFUKLS0tIDBCR1pDVjFiY0FrMmhkTTFYcUMy
+            cXZBVUNDT1FTV25CdXNJWWp0OGFkZmsKpI/ahrNyg9WqySkI9OHAK7GCZqqRRRZx
+            P2tTkC3YBADHaknroSJrKk9p9NRTMZjgWNDysc2OZqZRezuKESkUnw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-09T18:47:12Z"
+    mac: ENC[AES256_GCM,data:zVRcqxkWXx0ZB0LVXsQCexBKkfxqRN1J0mlyww//MVZqQvT7rWd0mnJP86A8iG8/5HtW4Rd1j74r/KsWAntw7OOIz0dNqk5+ZTwCoeS3YkT1DuGzpOdaANMOoXQvp3B7vTcWEZeujvlVvs/yOHVq1utbTR7bRpy93lPFpQnqeG4=,iv:ZwwZoaVF6ifuaebBTMbe1t+zDECHPkfQhdDxfAAEBpw=,tag:tgzAJADlYZaD3Ndzfa+xIA==,type:str]
+    pgp: []
+    encrypted_regex: ^(email)$
+    version: 3.9.4

@@ -3,4 +3,10 @@ kind: Kustomization
 resources:
   - ../../base/tailscale/helmrelease.yaml
   - ../../base/tailscale/helmrepository.yaml
-  - ../../base/tailscale/namespace.yaml
+  - ../../base/tailscale/namespace.yaml\
+secretGenerator:
+  - name: tailscale-secrets
+    files:
+      - values.yaml=tailscale-values.yaml
+configurations:
+  - kustomizeconfig.yaml
