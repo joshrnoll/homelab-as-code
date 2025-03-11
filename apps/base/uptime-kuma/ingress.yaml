@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: uptimekuma-ingress
+    namespace: apps
+spec:
+    rules:
+        - host: ENC[AES256_GCM,data:ZHWTO83F6MixiRehEjU+9X8RZA8VqG6t,iv:75MjdgNrVGr606Wd8CrhyTzCWyUdbSbrahzQ/FKaDtg=,tag:9jB3KLxJWNlmoF2XgfdVgA==,type:str]
+          http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: uptimekuma-service
+                        port:
+                            number: 3001
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKMGd3MGpyaGhMaXdkcmIv
+            UlpENUw5VytRd3RwZHNXTFh2R1lrMis2djAwCkpZa3J2QjVNZ3NiUWpXMldNd2NW
+            MFNLQkRFK0x5bm8vTkJGUk1Tc0kzWVUKLS0tIGhFbnVhM2R2S00wTFFaaUkzdHZ3
+            SnhEU01vTmlMWnhGbjBSUUR5OGROcmMKAcN1tgqMFqXn72ICSDMAOe9o6eMF+0H3
+            O6nS0TVuPZAAmj4pLZGmBd2XouvrG5BESIQqUED8eo/aV2g+d3rqwA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-03-10T09:20:42Z"
+    mac: ENC[AES256_GCM,data:VBlkbijpwNB3NQ0uPrGvXZCDOMfgHZkwO7b4D/trLZkSgmOyPRkd+JkM602kRf79SRutmTip2Sx5a2LTCgEx7fqTfAtENXWC82DvD+og+/XqIBqqdEg4MazRKe7xRYZFRQ6+NbQtXKmphK40MpPEX4yxaL8BjQg4j/act1lyYm8=,iv:b6FzBNEUoWJIUPS1vG8u9tbns+WCYPce1W/kLkvUzlQ=,tag:B37QIU9fn9saLVgnUYV+Ww==,type:str]
+    pgp: []
+    encrypted_regex: ^(host)$
+    version: 3.9.4
