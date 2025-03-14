@@ -2,19 +2,24 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: busybox
+  namespace: apps
   labels:
     name: busybox
 spec:
   containers:
   - name: busybox
     image: busybox
+    tty: true
     resources:
       limits:
         memory: "128Mi"
         cpu: "500m"
-    volumes:
+    volumeMounts:
       - name: uptimekuma-data
-        persistentVolumeClaim:
-          claimName: uptimekuma-pvc
+        mountPath: /uptimekuma
+  volumes:
+    - name: uptimekuma-data
+      persistentVolumeClaim:
+        claimName: uptimekuma-pvc
     
     

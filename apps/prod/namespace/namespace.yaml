@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test-apps
