@@ -11,3 +11,14 @@ jobs:
         uses: actions/checkout@v4
       - run: echo "The working directory is ${{ gitea.workspace }}"
       - run: echo "This job's status is ${{ job.status }}."
+  Run Ansible playbook:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine/ansible:latest
+      volumes:
+        - ${{ gitea.workspace }}:/repo
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
+      - run: ansible --version
+      - run: ls /repo
+      - run: echo "This job's status is ${{ job.status }}."
