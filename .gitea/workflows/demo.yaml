@@ -9,14 +9,5 @@ jobs:
       - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "This job's status is ${{ job.status }}."
-  Show Ansible version:
-    runs-on: ubuntu-latest
-    container:
-      image: alpine/ansible:latest
-    steps:
-      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
-      - name: Show Ansible version
-        run: |
-          ansible --version
+      - run: echo "The working directory is ${{ gitea.workspace }}"
       - run: echo "This job's status is ${{ job.status }}."
