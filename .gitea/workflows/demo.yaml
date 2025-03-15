@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   Explore-Gitea-Actions:
-    runs-on: alpine-ansible-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
@@ -15,5 +15,9 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Check ansible version
         run: |
+          apt update
+          apt install software-properties-common
+          add-apt-repository --yes --update ppa:ansible/ansible
+          apt install ansible
           ansible --version
       - run: echo "🍏 This job's status is ${{ job.status }}."
