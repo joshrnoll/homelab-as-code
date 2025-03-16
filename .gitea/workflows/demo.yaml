@@ -29,6 +29,7 @@ jobs:
           chmod +x passphrase
           echo '$SSH_PRIVATE_KEY' >> .ansible_key
           chmod 0700 .ansible_key
+          eval `ssh-agent -s`
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add - < /dev/null
 
       - name: Run playbook

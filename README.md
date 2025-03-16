@@ -4,6 +4,8 @@ This repo attempts to bring to life the plans I define in this blog post:
 
 https://joshrnoll.com/my-plan-for-homelab-as-code/
 
+![](/homelab-as-code-workflow.png)
+
 ## Overview
 
 On commit, this repo will eventually do the following:
