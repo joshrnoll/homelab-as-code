@@ -16,9 +16,9 @@ jobs:
     container:
       image: alpine/ansible:latest
       volumes:
-        - ${{ gitea.workspace }}:${{ gitea.workspace }}
+        - /workspace/joshrnoll/homelab-as-code:/repo
     steps:
       - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: ansible --version
-      - run: ls ${{ gitea.workspace }}
+      - run: ls /repo
       - run: echo "This job's status is ${{ job.status }}."
