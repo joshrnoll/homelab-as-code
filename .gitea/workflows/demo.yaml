@@ -11,9 +11,9 @@ jobs:
       - name: Install Ansible 
         run: |
           apt update
-          apt install software-properties-common
+          apt install --yes software-properties-common
           add-apt-repository --yes --update ppa:ansible/ansible
-          apt install ansible
+          apt install --yes ansible
       - name: Install joshrnoll.homelab Ansible collection
         run: ansible-galaxy collection install joshrnoll.homelab
       - name: Run playbook
