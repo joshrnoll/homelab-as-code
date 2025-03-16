@@ -20,15 +20,16 @@ jobs:
         run: ansible-galaxy collection install joshrnoll.homelab
 
       - name: Set ssh identity
+        env:
+          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
         run: |
-          touch passphrase
           echo '#!/bin/sh' >> passphrase
-          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' >> passphrase
+          echo 'echo $SSH_PASSPHRASE' >> passphrase
           chmod +x passphrase
-          touch .ansible_key
-          echo '${{ secrets.SSH_KEY }}' >> .ansible_key
+          echo '$SSH_PRIVATE_KEY' >> .ansible_key
           chmod 0700 .ansible_key
-          DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add .ansible_key < /dev/null
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add - < /dev/null
 
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v3
