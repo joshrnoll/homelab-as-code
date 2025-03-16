@@ -24,4 +24,5 @@ jobs:
           vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
           options: |
             --inventory ${{ gitea.workspace }}/ansible/hosts.yaml
+            --ssh-extra-args "-o StrictHostKeyChecking=no"
 
