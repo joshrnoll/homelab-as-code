@@ -26,7 +26,7 @@ jobs:
           echo 'echo ${{ secrets.SSH_PASSPHRASE }}' >> passphrase
           chmod +x passphrase
           touch .ansible_key
-          echo ${{ secrets.SSH_KEY }} >> .ansible_key
+          echo '${{ secrets.SSH_KEY }}' >> .ansible_key
           chmod 0700 .ansible_key
           DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add .ansible_key < /dev/null
 
