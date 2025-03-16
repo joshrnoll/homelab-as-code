@@ -16,7 +16,7 @@ jobs:
     container:
       image: alpine/ansible:latest
       volumes:
-        - ${{ gitea.workspace }}:${{ gitea.workspace }}
+        - ${{ gitea.workspace }}
     steps:
       - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: ansible --version
