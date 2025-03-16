@@ -20,7 +20,7 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v3
         with:
           playbook: ${{ gitea.workspace }}/ansible/servers/main.yaml
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
           options: |
             --inventory ${{ gitea.workspace }}/ansible/hosts.yaml
