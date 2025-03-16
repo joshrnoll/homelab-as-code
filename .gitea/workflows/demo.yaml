@@ -8,14 +8,25 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
       - name: Install Ansible 
         run: |
           apt update
           apt install --yes software-properties-common
           add-apt-repository --yes --update ppa:ansible/ansible
           apt install --yes ansible
+
       - name: Install joshrnoll.homelab Ansible collection
         run: ansible-galaxy collection install joshrnoll.homelab
+
+      - name: Set ssh identity
+        run: |
+          touch passphrase
+          echo '#!/bin/sh' >> passphrase
+          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' >> passphrase
+          chmod +x passphrase
+          DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add id < /dev/null
+
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v3
         with:
