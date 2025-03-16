@@ -1,24 +1,27 @@
 name: Gitea Actions Demo
-run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+run-name: ${{ gitea.actor }} is testing Ansible playbooks with Gitea actions
 on: [push]
 
 jobs:
-  Clone repo:
+  run-ansible-playbook:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "The working directory is ${{ gitea.workspace }}"
-      - run: echo "This job's status is ${{ job.status }}."
-  Run Ansible playbook:
-    runs-on: ubuntu-latest
-    container:
-      image: alpine/ansible:latest
-      volumes:
-        - /workspace/joshrnoll/homelab-as-code:/repo
-    steps:
-      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event."
-      - run: ansible --version
-      - run: ls /repo
-      - run: echo "This job's status is ${{ job.status }}."
+      - name: Install Ansible 
+        run: |
+          apt update
+          apt install software-properties-common
+          add-apt-repository --yes --update ppa:ansible/ansible
+          apt install ansible
+      - name: Install joshrnoll.homelab Ansible collection
+        run: ansible-galaxy collection install joshrnoll.homelab
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v3
+        with:
+          playbook: ${{ gitea.workspace }}/ansible/servers/main.yaml
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+          options: |
+            --inventory ${{ gitea.workspace }}/ansible/hosts.yaml
+
