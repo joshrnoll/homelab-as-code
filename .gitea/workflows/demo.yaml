@@ -29,6 +29,8 @@ jobs:
           chmod +x passphrase
           eval `ssh-agent -s`
           echo -n "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add -
+          ssh-keyscan -H 10.0.30.40 > /home/runner/.ssh/known_hosts
+      
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v3
         with:
