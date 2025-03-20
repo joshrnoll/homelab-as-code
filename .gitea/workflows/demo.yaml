@@ -17,6 +17,7 @@ jobs:
           SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
         run: |
+          mkdir -p /home/runner/.ssh && touch /home/runner/.ssh/known_hosts
           echo '#!/bin/sh' >> passphrase
           echo 'echo $SSH_PASSPHRASE' >> passphrase
           chmod +x passphrase
