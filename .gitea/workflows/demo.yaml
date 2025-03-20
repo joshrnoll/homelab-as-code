@@ -28,5 +28,5 @@ jobs:
           ssh-keyscan -H 10.0.30.40 > /home/runner/.ssh/known_hosts
       
       - name: Run playbook
-        run: ansible-playbook /workspace/joshrnoll/homelab-as-code/ansible/servers/main.yml --inventory /workspace/joshrnoll/homelab-as-code/ansible/hosts.yml --vault-password-file /home/runner/vault-pw
+        run: ansible-playbook /workspace/joshrnoll/homelab-as-code/ansible/servers/main.yml --inventory /workspace/joshrnoll/homelab-as-code/ansible/hosts.yaml --vault-password-file /home/runner/vault-pw
 
