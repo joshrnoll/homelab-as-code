@@ -1,6 +1,6 @@
 name: Gitea Actions Demo
 run-name: ${{ gitea.actor }} is testing Ansible playbooks with Gitea actions
-on: [push]
+on: [push,workflow_dispatch]
 
 jobs:
   run-ansible-playbook:
