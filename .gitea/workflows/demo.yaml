@@ -19,7 +19,7 @@ jobs:
           ANSIBLE_VAULT_PW: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
         run: |
           mkdir -p /home/runner/.ssh && touch /home/runner/.ssh/known_hosts
-          echo '$ANSIBLE_VAULT_PW' >> /home/runner/vault-pw
+          echo -n '$ANSIBLE_VAULT_PW' >> /home/runner/vault-pw
           echo '#!/bin/sh' >> passphrase
           echo 'echo $SSH_PASSPHRASE' >> passphrase
           chmod +x passphrase
