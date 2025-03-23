@@ -12,21 +12,10 @@ jobs:
       - name: Install joshrnoll.homelab Ansible collection
         run: ansible-galaxy collection install joshrnoll.homelab
 
-      - name: Set ssh identity
+      - name: Set up ssh agent and run playbook
         env:
           SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           ANSIBLE_VAULT_PW: ${{ secrets.ANSIBLE_VAULT_PW }}
-        run: |
-          mkdir -p /home/runner/.ssh && touch /home/runner/.ssh/id_rsa
-          echo $SSH_PRIVATE_KEY >> /home/runner/.ssh/id_rsa && echo >> /home/runner/.ssh/id_rsa
-          chmod 0700 /home/runner/.ssh/id_rsa
-          echo -n "$ANSIBLE_VAULT_PW" | tr -d '\r' >> /home/runner/vault-pw
-          echo '#!/bin/sh' >> passphrase && echo "echo $SSH_PASSPHRASE" >> passphrase
-          chmod +x passphrase
-          eval `ssh-agent -s`
-          echo -n "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add -
-          
-      - name: Run playbook
-        run: ansible-playbook /workspace/joshrnoll/homelab-as-code/ansible/servers/main.yaml --inventory /workspace/joshrnoll/homelab-as-code/ansible/hosts.yaml --vault-password-file /home/runner/vault-pw --ssh-extra-args "-o StrictHostKeyChecking=no"
+        run: chmod +x /workspace/joshrnoll/homelab-as-code/ansible/run.sh && /workspace/joshrnoll/homelab-as-code/ansible/run.sh
 
