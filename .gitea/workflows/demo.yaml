@@ -18,14 +18,12 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           ANSIBLE_VAULT_PW: ${{ secrets.ANSIBLE_VAULT_PW }}
         run: |
-          mkdir -p /home/runner/.ssh && touch /home/runner/.ssh/known_hosts
           echo -n "$ANSIBLE_VAULT_PW" | tr -d '\r' >> /home/runner/vault-pw
           echo '#!/bin/sh' >> passphrase
-          echo 'echo $SSH_PASSPHRASE' >> passphrase
+          echo "echo $SSH_PASSPHRASE" >> passphrase
           chmod +x passphrase
           eval `ssh-agent -s`
           echo -n "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=1 SSH_ASKPASS="./passphrase" ssh-add -
-          ssh-keyscan -H 10.0.30.40 > /home/runner/.ssh/known_hosts
       
       - name: Run playbook
         run: ansible-playbook /workspace/joshrnoll/homelab-as-code/ansible/servers/main.yaml --inventory /workspace/joshrnoll/homelab-as-code/ansible/hosts.yaml --vault-password-file /home/runner/vault-pw --ssh-extra-args "-o StrictHostKeyChecking=no"
