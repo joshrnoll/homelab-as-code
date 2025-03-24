@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Proxmox baseline playbook
-        uses: ./.gitea/workflows/run-ansible-playbook.yaml
+        uses: joshrnoll/homelab-as-code/.gitea/workflows/run-ansible-playbook.yaml@main
         with:
           playbook_path: /workspace/joshrnoll/homelab-as-code/ansible/servers/main.yaml
           inventory_path: /workspace/joshrnoll/homelab-as-code/ansible/hosts.yaml
