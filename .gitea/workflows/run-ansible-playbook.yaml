@@ -1,0 +1,34 @@
+name: Run an Ansible Playbook
+on:
+  workflow_call:
+    inputs:
+      playbook_path:
+        required: true
+        type: string
+      inventory_path:
+        required: true
+        type: string
+    secrets:
+      ssh_private_key:
+        required: true
+      ssh_passphrase:
+        required: true
+      ansible_vault_password:
+        required: true
+      
+jobs:
+  run-ansible-playbook:
+    runs-on: ubuntu-latest-full
+    steps:
+    
+      - name: Set up ssh agent and run playbook
+        env:
+          SSH_PASSPHRASE: ${{ secrets.ssh_passphrase }}
+          SSH_PRIVATE_KEY: ${{ secrets.ssh_private_key }}
+          ANSIBLE_VAULT_PW: ${{ secrets.ansible_vault_password }}
+        run: |
+          PLAYBOOK=${{ inputs.playbook_path }}
+          INVENTORY=${{ inputs.inventory_path }}
+          ansible-galaxy collection install joshrnoll.homelab
+          chmod +x /workspace/joshrnoll/homelab-as-code/ansible/run.sh && /workspace/joshrnoll/homelab-as-code/ansible/run.sh
+

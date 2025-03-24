@@ -1,3 +1,9 @@
+proxmox_hosts:
+  hosts:
+    opti-hst-01:
+    opti-hst-02:
+    opti-hst-03:
+    
 ubuntu:
   hosts:
     nextcloud-srv:

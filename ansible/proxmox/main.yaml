@@ -1,0 +1,57 @@
+---
+- name: Baseline Proxmox hosts and create VM templates
+  hosts: proxmox_hosts
+
+  tasks:
+    - name: Import variables
+      ansible.builtin.include_vars:
+        dir: ../vars
+
+    - name: Baseline hosts
+      ansible.builtin.include_role:
+        name: joshrnoll.homelab.server_baseline
+      vars:
+        server_baseline_created_username: josh
+        server_baseline_tailscale_oauth_client_secret: "{{ tailscale_servers_oauth_client['secret'] }}"
+        server_baseline_timezone: America/New_York
+        server_baseline_proxmox_packages:
+          - tmux
+          - ncdu
+
+    - name: Create VM templates
+      ansible.builtin.include_role:
+        name: joshrnoll.homelab.proxmox_template_vm
+      vars:
+        # Required to provide at least one
+        proxmox_template_vm_distros:
+          - fedora
+          - ubuntu
+
+        # Required proxmox credentials
+        proxmox_template_vm_proxmox_username: "{{ proxmox_username }}"
+        proxmox_template_vm_proxmox_api_token_id: "{{ proxmox_api_token_id }}"
+        proxmox_template_vm_proxmox_api_token_secret: "{{ proxmox_api_token_secret }}"
+
+        # Optional customizations for ubuntu
+        proxmox_template_vm_ubuntu_storage: "ha-zfs-storage"
+        proxmox_template_vm_ubuntu_name: ubuntu-2204-template
+        proxmox_template_vm_ubuntu_memory: 4096
+        proxmox_template_vm_ubuntu_cores: 1
+        proxmox_template_vm_ubuntu_ciuser: "{{ ciuser }}"
+        proxmox_template_vm_ubuntu_cipassword: "{{ cipassword }}"
+        proxmox_template_vm_ubuntu_sshkeys: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+        proxmox_template_vm_ubuntu_vlan: 30
+
+        # Optional customizations for fedora
+        proxmox_template_vm_fedora_storage: "ha-zfs-storage"
+        proxmox_template_vm_fedora_name: fedora-40-template
+        proxmox_template_vm_fedora_memory: 4096
+        proxmox_template_vm_fedora_cores: 1
+        proxmox_template_vm_fedora_ciuser: "{{ ciuser }}"
+        proxmox_template_vm_fedora_cipassword: "{{ cipassword }}"
+        proxmox_template_vm_fedora_sshkeys: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+        proxmox_template_vm_fedora_vlan: 30
+
+        # Set to true if you have slow storage to avoid file locks
+        proxmox_template_vm_slow_storage: false
+...
