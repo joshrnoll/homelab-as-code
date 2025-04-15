@@ -1,5 +1,5 @@
 name: Baseline Proxmox hosts
-on: [push,workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   baseline_proxmox_machines:
