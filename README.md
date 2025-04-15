@@ -12,7 +12,7 @@ On commit, this repo will eventually do the following:
 
 | Feature | Tool | Method | Status |
 | :--- | :--- | :--- | :---: |
-| Configure/baseline Proxmox nodes  | Ansible | Gitea/GitHub Actions | ❌ |
+| Configure/baseline Proxmox nodes  | Ansible | Gitea/GitHub Actions | :construction: |
 | Install VM templates on Proxmox nodes  | Ansible | Gitea/GitHub Actions | ❌ |
 | Deploy VMs on Proxmox  | Terraform | Gitea/GitHub Actions | ❌ |
 | Configure/baseline VMs and other servers | Ansible | Gitea/GitHub Actions | ❌ |
