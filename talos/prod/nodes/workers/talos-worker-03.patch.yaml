@@ -5,12 +5,12 @@ machine:
   ###########################
 
   network:
-    hostname: talos-prod-worker-01
+    hostname: talos-worker-03
     interfaces:
       - deviceSelector:
           physical: true 
         addresses:
-          - 10.0.30.83/24
+          - 10.0.30.85/24
         routes:
           - network: 0.0.0.0/0 # The route's network.
             gateway: 10.0.30.1 # The route's gateway.

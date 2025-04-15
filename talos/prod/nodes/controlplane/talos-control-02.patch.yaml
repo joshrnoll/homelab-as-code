@@ -5,7 +5,7 @@ machine:
   ###########################
 
   network:
-    hostname: talos-prod-control-02
+    hostname: talos-control-02
     interfaces:
       - deviceSelector:
           physical: true 

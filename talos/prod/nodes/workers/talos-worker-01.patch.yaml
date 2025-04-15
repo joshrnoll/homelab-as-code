@@ -5,20 +5,20 @@ machine:
   ###########################
 
   network:
-    hostname: talos-staging
+    hostname: talos-worker-01
     interfaces:
       - deviceSelector:
           physical: true 
         addresses:
-          - 10.0.30.86/24
+          - 10.0.30.83/24
         routes:
           - network: 0.0.0.0/0 # The route's network.
             gateway: 10.0.30.1 # The route's gateway.
         dhcp: false
-
-  ################################################
-  # MOUNTS REQUIRED FOR LONGHORN ON WORKER NODES #
-  ################################################
+  
+  ################################
+  # MOUNTS REQUIRED FOR LONGHORN #
+  ################################
   
   kubelet:
     extraMounts:
