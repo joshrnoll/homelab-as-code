@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: uptime-kuma
+spec:
+  replicas: 1
+  serviceName: uptime-kuma-service
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      containers:
+        - name: uptime-kuma
+          image: louislam/uptime-kuma
+          ports:
+            - name: uptime-kuma
+              containerPort: 3001
+              protocol: TCP
+          volumeMounts:
+            - name: uptime-kuma-data
+              mountPath: /app/data
+
+  volumeClaimTemplates:
+    - metadata:
+        name: uptime-kuma-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        volumeMode: Filesystem
+        resources:
+          requests:
+            storage: 1Gi

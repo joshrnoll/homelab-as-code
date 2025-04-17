@@ -43,13 +43,29 @@ export GITEA_TOKEN=<gt-token>
 
 #### 1. Bootsrap the **dev** cluster
 
-The dev cluster is bootstrapped against a feature branch named after a service that is being tested/developed (ex. uptime-kuma). ***This will need to be re-run each time a service is being tested.***
+The dev cluster is bootstrapped against a feature branch named after a service that is being tested/developed (ex. uptime-kuma). First, make sure your ```kubectl``` context is set to the dev cluster:
 
 ```bash
 kubectl config use-context dev # Ensure kubectl is set to the dev cluster context
 ```
 
-then,
+Before bootstrapping, remove the ```clusters/dev/flux-system``` folder and commit this change to the new feature branch:
+
+```
+git branch uptime-kuma
+git checkout uptime-kuma
+rm -r clusters/dev/flux-system
+git commit -m "removed previous flux config"
+git push origin uptime-kuma
+```
+
+Then, uninstall flux components:
+
+```
+flux uninstall --keep-namespace
+```
+
+Finally, bootstrap against the new feature branch:
 
 ```
 flux bootstrap gitea \
@@ -58,10 +74,13 @@ flux bootstrap gitea \
   --repository=homelab-as-code \
   --branch=uptime-kuma \
   --path=clusters/dev \
-  --personal
+  --personal \
+  --hostname=gitea.mydomain.com
 ```
 
 #### 2. Bootsrap the **talos** cluster
+
+
 
 ```bash
 kubectl config use-context talos # Ensure kubectl is set to the talos cluster context
@@ -76,6 +95,7 @@ flux bootstrap gitea \
   --repository=homelab-as-code \
   --branch=main \
   --path=clusters/talos \
-  --personal
+  --personal \
+  --hostname=gitea.mydomain.com
 ```
 

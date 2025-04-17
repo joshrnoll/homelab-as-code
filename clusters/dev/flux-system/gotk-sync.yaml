@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: main
+    branch: uptime-kuma
   secretRef:
     name: flux-system
   url: https://gitea.nollhome.casa/joshrnoll/homelab-as-code.git
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/staging
+  path: ./clusters/dev
   prune: true
   sourceRef:
     kind: GitRepository

@@ -1,4 +1,17 @@
 ---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: staging
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: staging
+  secretRef:
+    name: flux-system
+  url: https://gitea.nollhome.casa/joshrnoll/homelab-as-code.git
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -10,7 +23,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: staging
   targetNamespace: prod-apps
   decryption:
     provider: sops
