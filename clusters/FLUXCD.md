@@ -58,7 +58,8 @@ flux bootstrap gitea \
   --repository=homelab-as-code \
   --branch=uptime-kuma \
   --path=clusters/dev \
-  --personal
+  --personal \
+  --hostname=gitea.mydomain.com
 ```
 
 #### 2. Bootsrap the **talos** cluster
@@ -78,6 +79,7 @@ flux bootstrap gitea \
   --repository=homelab-as-code \
   --branch=main \
   --path=clusters/talos \
-  --personal
+  --personal \
+  --hostname=gitea.mydomain.com
 ```
 
