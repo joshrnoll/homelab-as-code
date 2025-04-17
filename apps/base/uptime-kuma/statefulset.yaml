@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: uptime-kuma
 spec:
-  replicas: 1
+  replicas: 2
   serviceName: uptime-kuma-service
   selector:
     matchLabels:
@@ -16,22 +16,17 @@ spec:
       containers:
         - name: uptime-kuma
           image: louislam/uptime-kuma
-          env:
-            - name: UPTIME_KUMA_PORT
-              value: "3001"
-            - name: PORT
-              value: "3001"
           ports:
             - name: uptime-kuma
               containerPort: 3001
               protocol: TCP
           volumeMounts:
-            - name: kuma-data
+            - name: uptime-kuma-data
               mountPath: /app/data
 
   volumeClaimTemplates:
     - metadata:
-        name: kuma-data
+        name: uptime-kuma-data
       spec:
         accessModes: ["ReadWriteOnce"]
         volumeMode: Filesystem
