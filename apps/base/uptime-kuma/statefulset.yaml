@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: uptime-kuma
 spec:
-  replicas: 2
+  replicas: 1
   serviceName: uptime-kuma-service
   selector:
     matchLabels:
