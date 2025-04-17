@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: uptimekuma-ingress
+    name: uptime-kuma-ingress
 spec:
     rules:
         - host: ENC[AES256_GCM,data:ZHWTO83F6MixiRehEjU+9X8RZA8VqG6t,iv:75MjdgNrVGr606Wd8CrhyTzCWyUdbSbrahzQ/FKaDtg=,tag:9jB3KLxJWNlmoF2XgfdVgA==,type:str]
