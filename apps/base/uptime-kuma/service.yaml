@@ -4,7 +4,7 @@ metadata:
   name: uptime-kuma-service
 spec:
   selector:
-    app: uptimekuma
+    app: uptime-kuma
   type: ClusterIP
   ports:
     - protocol: TCP
