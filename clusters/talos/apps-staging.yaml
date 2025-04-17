@@ -24,7 +24,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: staging
-  targetNamespace: prod-apps
+  targetNamespace: staging-apps
   decryption:
     provider: sops
     secretRef:

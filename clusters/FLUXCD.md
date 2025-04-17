@@ -80,13 +80,13 @@ flux bootstrap gitea \
 
 #### 2. Bootsrap the **talos** cluster
 
-
+The main Talos cluster is bootstrapped against the **main** branch, pointing to the ```clusters/talos``` folder. First, ensure your ```kubectl``` context is set to the talos context:
 
 ```bash
 kubectl config use-context talos # Ensure kubectl is set to the talos cluster context
 ```
 
-then,
+Then, bootstrap Flux:
 
 ```
 flux bootstrap gitea \
@@ -99,3 +99,6 @@ flux bootstrap gitea \
   --hostname=gitea.mydomain.com
 ```
 
+Though this cluster is *bootstrapped* against the **main** branch, it will also reference apps committed to the **staging** branch. Staging and Production are separated via namespaces. Apps will be automatically placed in the correct namespace due to the use of ```spec.targetNamespace``` field in the Kustomization resource. 
+
+Refer to the ```clusters/talos/apps-prod.yaml``` and ```clusters/talos/apps-staging.yaml``` to better understand how this works.
