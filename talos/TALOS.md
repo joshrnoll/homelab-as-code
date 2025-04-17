@@ -1,4 +1,6 @@
 ## Talos Configuration
+The following describes how to generate and apply Talos machine configurations and how to encrypt the files to be safely stored in a public repository.
+
 Before doing anything, it is recommended to add the following to your ```~/.bashrc``` file:
 
 ```

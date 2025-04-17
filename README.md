@@ -29,3 +29,4 @@ On commit, this repo will eventually do the following:
 
 ### Docs
 - [Talos Cluster](/talos/TALOS.md)
+- [FluxCD](/clusters/FLUXCD.md)
