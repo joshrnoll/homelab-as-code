@@ -10,4 +10,4 @@ patches:
     target:
       kind: Deployment
       name: uptime-kuma
-      namespace: apps
+      namespace: dev-apps

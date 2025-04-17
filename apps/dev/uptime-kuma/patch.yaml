@@ -6,4 +6,4 @@ metadata:
   labels:
     app: uptimekuma
 spec:
-  replicas: 2
+  replicas: 1
