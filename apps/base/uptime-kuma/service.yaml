@@ -2,12 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: uptimekuma-service
-  namespace: apps
 spec:
   selector:
     app: uptimekuma
-  type: LoadBalancer
-  loadBalancerClass: tailscale
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 3001
