@@ -63,6 +63,8 @@ flux bootstrap gitea \
 
 #### 2. Bootsrap the **talos** cluster
 
+
+
 ```bash
 kubectl config use-context talos # Ensure kubectl is set to the talos cluster context
 ```
