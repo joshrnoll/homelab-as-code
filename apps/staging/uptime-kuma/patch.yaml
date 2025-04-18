@@ -1,8 +1,8 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: uptimekuma
+  name: uptime-kuma
   labels:
-    app: uptimekuma
+    app: uptime-kuma
 spec:
   replicas: 2

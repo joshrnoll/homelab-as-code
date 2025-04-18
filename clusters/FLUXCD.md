@@ -6,6 +6,8 @@ There are two clusters in my environment -- **dev** and **talos**. The **dev** c
 
 These two environments are separated via Kubernetes namespaces. The **staging-apps** namespace is used to place a service that has been previously validated on the **dev** cluster. The staging environment is identical to the production environment (since it is on the same cluster... Ideally, I would have a separate, but identical cluster for the staging environment. But... this is a homelab). 
 
+A visual of the workflow looks like this:
+
 ![](../homelab-as-code-workflow.png)
 
 ### Installing Flux CLI

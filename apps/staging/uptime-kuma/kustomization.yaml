@@ -7,6 +7,6 @@ resources:
 patches:
   - path: patch.yaml
     target:
-      kind: Deployment
+      kind: StatefulSet
       name: uptime-kuma
       namespace: staging-apps
