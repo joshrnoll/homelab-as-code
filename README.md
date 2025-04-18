@@ -1,12 +1,18 @@
 ![](/homelab-as-code-logo.png)
 
-This repo attempts to bring to life the plans I define in this blog post:
+## This repo attempts to bring to life the plans I define in this blog post:
 
 https://joshrnoll.com/my-plan-for-homelab-as-code/
 
+## Docs
+- [Talos Cluster](/talos/TALOS.md)
+- [FluxCD](/clusters/FLUXCD.md)
+
+## Workflow Visual
+
 ![](/homelab-as-code-workflow.png)
 
-## Overview
+## Roadmap
 
 On commit, this repo will eventually do the following:
 
@@ -26,7 +32,3 @@ On commit, this repo will eventually do the following:
 | ❌ | Not started |
 | 🚧 | In-Progress |
 | ✅ | Complete |
-
-### Docs
-- [Talos Cluster](/talos/TALOS.md)
-- [FluxCD](/clusters/FLUXCD.md)
