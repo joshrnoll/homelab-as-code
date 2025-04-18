@@ -4,33 +4,28 @@ metadata:
     name: uptime-kuma-ingress
 spec:
     rules:
-        - host: ENC[AES256_GCM,data:ZHWTO83F6MixiRehEjU+9X8RZA8VqG6t,iv:75MjdgNrVGr606Wd8CrhyTzCWyUdbSbrahzQ/FKaDtg=,tag:9jB3KLxJWNlmoF2XgfdVgA==,type:str]
+        - host: ENC[AES256_GCM,data:hqMwjlWqbwAbKN3wpQVGwxDmHIG8yvsCVg==,iv:yronRQmMI5DDc2PYyAAQ3lO7rTVHT95ZrciOmMuXDP8=,tag:rLLpNeECYdf+eRzwWuYiEA==,type:str]
           http:
             paths:
                 - path: /
                   pathType: Prefix
                   backend:
                     service:
-                        name: uptimekuma-service
+                        name: uptime-kuma-service
                         port:
                             number: 3001
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKMGd3MGpyaGhMaXdkcmIv
-            UlpENUw5VytRd3RwZHNXTFh2R1lrMis2djAwCkpZa3J2QjVNZ3NiUWpXMldNd2NW
-            MFNLQkRFK0x5bm8vTkJGUk1Tc0kzWVUKLS0tIGhFbnVhM2R2S00wTFFaaUkzdHZ3
-            SnhEU01vTmlMWnhGbjBSUUR5OGROcmMKAcN1tgqMFqXn72ICSDMAOe9o6eMF+0H3
-            O6nS0TVuPZAAmj4pLZGmBd2XouvrG5BESIQqUED8eo/aV2g+d3rqwA==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDLzdEbFN3WTFTQ0Q4KzQx
+            SkxTOWtrRUtEYlpaVUtvVVZiei8yNlIzMjI4CnVieWN6K1ROMWhTc1IrQkhnRmhu
+            RDhFL0FUVGpORGFSSjZYZ0dpQTFXR1EKLS0tIHhiM2hjQTZYVEJKWjNRYlliL2o3
+            ZkdMSHUyUStDV01YMWlwQitmZkx3TlUKmhOjWBiwbW+rtXE6XuNCr31kf1k2YrzK
+            YDAF22FwBGBoFqFzEWfAMK3b6qd0GaH8iUwqh2bdL7YNfac7WnryCw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-03-10T09:20:42Z"
-    mac: ENC[AES256_GCM,data:VBlkbijpwNB3NQ0uPrGvXZCDOMfgHZkwO7b4D/trLZkSgmOyPRkd+JkM602kRf79SRutmTip2Sx5a2LTCgEx7fqTfAtENXWC82DvD+og+/XqIBqqdEg4MazRKe7xRYZFRQ6+NbQtXKmphK40MpPEX4yxaL8BjQg4j/act1lyYm8=,iv:b6FzBNEUoWJIUPS1vG8u9tbns+WCYPce1W/kLkvUzlQ=,tag:B37QIU9fn9saLVgnUYV+Ww==,type:str]
-    pgp: []
+    lastmodified: "2025-04-18T17:06:01Z"
+    mac: ENC[AES256_GCM,data:Rq4SCiXMig+nP3y+rc+wZya2CPK795YJ28r0tI4BtRKG14hqTgmgNFa2KFodPGTrToy8Cyz/2/ld/hClh6cwsn68K9MVHu1/Y3Y5NycNGr9rUmu0ahvgRjNbLGE3a5S++BotzQWpc4XRRmLA4yi8PUp16CVCMpvMvxrkXqyM7gc=,iv:thmK8bkFJfrw0n2sGwrscsXxFHBeuajM2ZHxZP6grH4=,tag:YuX0ixthXvrB16qW/FVjNA==,type:str]
     encrypted_regex: ^(host)$
-    version: 3.9.4
+    version: 3.10.2
