@@ -1,11 +1,26 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: authentik
-  namespace: authentik
+    name: authentik
+    namespace: authentik
 spec:
-  values:
-    server:
-      ingress:
-        hosts:
-        - authentik.staging.nollhome.casa
+    values:
+        server:
+            ingress:
+                hosts:
+                    - ENC[AES256_GCM,data:VRE/bxzXMrriNZzoXW0dEcqcHRLx/WQyDtsBWQ+NGQ==,iv:6TYxaN0Tx+VVWV09mQELfGg63te3qgpFT8C08QS9qx0=,tag:5cePlw/CUqqhr6bJ6Qskmw==,type:str]
+sops:
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUlh1TlkvNzN4Mk5jMjJL
+            RDlMbHhOV2ZacWloTXVacjBFb0RQV3dOcmkwClpwQU9HQkQ1ZEtRNWlvSGtabm5B
+            K3RNS1pYZlJuM2xyVVlEOVN2ZUtHT1EKLS0tIHZOU3B4WUozdW9ES2UrTFlyRk9Z
+            Nyt1WFJkdTNzdUVOWnJ4aVRYLzJValkK9JU5mLayIGnBQ8iJmz9fh0rMT3NVh5tv
+            1lr/iUYniMvmmbpddqNJHraDXbh0lDC1Qs0XSgAE0uONm56f4ZSa4A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-05-03T11:08:03Z"
+    mac: ENC[AES256_GCM,data:Gzs15YpOhNbo6KgTC5v2ajQkKfijoE1nMAxHRmbJcdegmVwZ+qcgHLeYxkchRedFg3qjw7S8dOuo/HNTH0N8qZcZqSUS5DTAMT41ulP4QAHcOpP8/RWJrGH0qNn6jR2kHA5PQwPQDU+Rd8H5H3h9N7T5no4qWGEJMz2fEz2Nw8o=,iv:waNfmt+brbGGfzTdz+bugKwo18hAY7nxO/5X3fIiyiU=,tag:U3HdnMS3WNJuIOHEAZvIqw==,type:str]
+    encrypted_regex: ^(values)$
+    version: 3.10.2
