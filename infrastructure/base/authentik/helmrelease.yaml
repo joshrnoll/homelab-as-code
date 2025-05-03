@@ -20,7 +20,6 @@ spec:
         authentik:
             secret_key: ENC[AES256_GCM,data:UD26TdFiU2tFYvp+lfK9nLTDkI1rRDg+ru+pG7X1m81uhMeL7kaSExIq+UwzVnt6cCRaQwU08J2E/1E3uSJy6S6WoOsHt5LXONL9VyQ1L0o=,iv:22UF9V9puaxSHNpqIgcZyfXjx84tK9tLLkEGosXwgbc=,tag:dSAGhSAYEo5DStEsRyJBNQ==,type:str]
             error_reporting:
-                #ENC[AES256_GCM,data:l+WXB4N5mJuoZT/VcjDXiFjZp+ytoed+B/xLxo6ALN0=,iv:mAt2fzxmhnyX9yYJ8EG0XpqEmqCW8O1T3d3pykzQgk4=,tag:3Aoz6RuMIgfGdLPzw/2Itg==,type:comment]
                 enabled: ENC[AES256_GCM,data:UeXs8JM=,iv:GgF6P0s8vFsq62PvIAuPDmZTivwOQvIiI7ud3w+TzSE=,tag:X/iM22pWAOAMlswQBRrV6w==,type:bool]
             postgresql:
                 password: ENC[AES256_GCM,data:IivLTNsDFQlVp8xPG1dOJAvSgVo=,iv:W/N/Sn8+fxRcGUySrIk+DDgUZ63QZgHxlXx2MsGjyJ4=,tag:UqC3MNd09amDFPa7MY1H2w==,type:str]
@@ -55,7 +54,7 @@ sops:
             MU4zTmZjNkN4ZUZLcmNFU0VZZE5jZFEKvYakukftF9wc9iN2VQNvggXChQ2LGAq0
             rtnyaM3s5uTH14ZES5LjfDpBGFtPa6V7DCu73yygEs2cUhOZ+8UgmQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-03T10:22:13Z"
-    mac: ENC[AES256_GCM,data:bQt17WNx7OzahC87I5VibIDPN/88WsQrT7LtWKYuY2lCaqbKzVJLt7h4RDSJBJCoxMfEEWEFXMK0cp3Db1DbK0xBES3uz257V+DypjeaRQxjTWOFGkYy4sWA0TTUP/Nf/n+8vGWwuPNPRa85pez5VrUmZzZrQWwD2RKs6JuQ09o=,iv:GclnHekZj4K6ppTNfEX9P5tK4NK4QqgYN3dEqXN4/K8=,tag:/iU+m7E8dKiByR7SnaT1Fw==,type:str]
+    lastmodified: "2025-05-03T10:53:17Z"
+    mac: ENC[AES256_GCM,data:qbK3td0emGnpexlbQx8kXpQcoJ6203H0ydzrIOanI0B6rZ5nADJRWs0YqT/qrbUKEcbdX0bA/n6uK25ixu47Zuz4Q6JdgQYpoXHpFRXnNVG4M1YpK+OliXNw7xVPpOIPt3uStkrzGcFzdeBinsQK/O4F0q7dMdHmFQxrJdFnyxE=,iv:iYeX/KnLAmt7E/WhMeETl6322odt+MnMm7velfqlqF4=,tag:Fqn5g8Nt27hWQ7ZLvY8G5w==,type:str]
     encrypted_regex: ^(values)$
     version: 3.10.2
