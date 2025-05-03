@@ -1,0 +1,61 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+    name: authentik
+    namespace: authentik
+spec:
+    interval: 5m
+    chart:
+        spec:
+            chart: authentik
+            version: '*'
+            sourceRef:
+                kind: HelmRepository
+                name: authentik
+                namespace: flux-system
+            interval: 5m
+    values:
+        global:
+            namespaceOverride: ENC[AES256_GCM,data:wI9sMrJxVBVs,iv:8C4DJt5H2WeGwbtjtCcsiOW3Y8Meq3cO2cl0tUbDBFk=,tag:XWWP+OIVO2nL/0C9gVmHzQ==,type:str]
+        authentik:
+            secret_key: ENC[AES256_GCM,data:o5vmiolBoxa3CiYmxsKc5FH/lEV0mOBkUgZ5x75lXNxR1evAzN0xrA4ZGiI0AiNXWcosFjjCCfIojYIqRPKxbBV6d4ol43CWquwwHKdbQCU=,iv:aiaUvIYLcOF1gep0ujjcReR/rsSpT6aOWuCqMOr+/UY=,tag:xk3XtmCdAUO5mx/kd9hV7g==,type:str]
+            error_reporting:
+                #ENC[AES256_GCM,data:nij8OIy3jU+mGAmqfVVr1I4Q3NH8oG83TUu3ZI7uPPo=,iv:BendPJNh/G3FjgX4rX2vJZF5emwdNop/wVoZyfj66YY=,tag:ELnbRWa9UR4caAaGQuVh0g==,type:comment]
+                enabled: ENC[AES256_GCM,data:aVKix1M=,iv:oUo2Gc0wI9AUSxaSj+beCFf+SBKDUCFEmoun4q4KFUw=,tag:R5L2nIWrX+fm/ioW3KrArA==,type:bool]
+            postgresql:
+                password: ENC[AES256_GCM,data:5Ekhd238WIDXcHzzpPFNgQLxelM=,iv:+BfJxmXtTxzpPEHJ/ZVjFy16DsfH/+SYwLz4eS1CcFw=,tag:qKTCHSmu0hRhGgznVgbikw==,type:str]
+            email:
+                host: ENC[AES256_GCM,data:hTriKCI27f2RYxPgeUE=,iv:HkNqipQm4I9aTYKDW87Zw8AfN2A2WKo/l14u5CVXt2I=,tag:cDht6e4PI2EgMx2FaG0gYg==,type:str]
+                port: ENC[AES256_GCM,data:po9F,iv:nCaXqCyf4CzhcVQQhLim4fEKKHC8E+SLhgVHfT9wVZA=,tag:0TPkp/lK4bcuI07i0ed0AQ==,type:int]
+                username: ENC[AES256_GCM,data:nLQ4USqO0vCNKwmkXay+jSULqFFq,iv:hVCJkmlIDJhLdhd1cLcYrrSOSG43tZDxa7sDP6UIPmc=,tag:vcspH2OctvPgNj2v9JSX3A==,type:str]
+                password: ENC[AES256_GCM,data:ikUvlgB/QD+2w2Zsk9qmx3A2ow==,iv:EOANoCz4g32gC6fjFppgGslDeMjNv1h466B0VboVVMo=,tag:N2ImYuSaWEy/I9Y01GXwng==,type:str]
+                use_tls: ENC[AES256_GCM,data:/fAhZg==,iv:1ovXFtAAEcz3oYf/QwML0EmjbvamLCBTP1Jr5iWSfTI=,tag:CBz91GGzFjkJ0YSWGjRRKw==,type:bool]
+                timeout: ENC[AES256_GCM,data:G8U=,iv:l9EVHSR1daifA3qnIgAQdd2fCJTvQ20mUICthHmoA/g=,tag:5jSlifPLYk+Vv3dhWApprw==,type:int]
+                from: ENC[AES256_GCM,data:ZwUZnk2zkQt+SUO4VRin/HbDIB4nYSQebuADo0Ov+c0mTEy0c/Zg66zCR4RHywE=,iv:M2ZAv4cnju9MadzqoIxfYi4SKbsFsBShC1NQz19MmH4=,tag:3A8xwNXS4XxMoRxWY7hTcQ==,type:str]
+        server:
+            ingress:
+                enabled: ENC[AES256_GCM,data:uyFtXA==,iv:wycGTWr07ijOJLkXkndCc+nuCut58YTRCTYE54q5ikc=,tag:Zzf1A7Xe/sgaX1YJgMpnIQ==,type:bool]
+                ingressClassName: ENC[AES256_GCM,data:L0RBIdPmdA==,iv:zm9vPcNakEPolJJ2LlXgZa4OA3Z6qzMXlW0Ap8IEy8g=,tag:m7Z+wCePxxsJS59waqPMXQ==,type:str]
+                hosts:
+                    - ENC[AES256_GCM,data:81sGVVUUeMroXwJjNxJ/8CKOlaJU754=,iv:317PghZinid7VFxaxbhMFpT3qgkQhMbdqEFBKZtz1ug=,tag:6Kl/Ck2gzHxUk6AVJWiwMA==,type:str]
+        postgresql:
+            enabled: ENC[AES256_GCM,data:7MUH5Q==,iv:VUQ8B52F3pKPK2ea7t8Lp9p4EfcSZimQ8kikAfTN5U4=,tag:e2dh5E1XAcuitMauyQX/xA==,type:bool]
+            auth:
+                password: ENC[AES256_GCM,data:P+eXfuMw/5MUV1/9YJcPiSgGKZA=,iv:F4YecEPZbUPHgE5cvGAslhx+e6ih+tXhC9eF+dAfXHY=,tag:OLGkTb9hPjjSAwt06rGuUg==,type:str]
+        redis:
+            enabled: ENC[AES256_GCM,data:0E2wWg==,iv:vjQq4jECaVFKyPo3sFj9toBEanLWJbaEOZiIPYr7I0c=,tag:Q/Lq5T82zbsrzvAAxIqp6w==,type:bool]
+sops:
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBSRE0zRnJPWlZBU0plbWF0
+            Nnp3enVPTm15SHdoQ29nZzlNdzQxbVE5LzN3CkZoN2ZsOWR6aGhvcDYwSTNsRlhy
+            SDlrTUwvSXNacG9zUzlrVVVPc1VOWjAKLS0tIDJNTjd4dWFOL0tWdm41WUVwUUpq
+            WnFzTUQ0d3hncVFSWm9tMXBIa2pKYk0KrwDo3j8NOhhmN2crkL21iwz/uAYUA2O4
+            hrv3Zx6GPeLqdfSM07FEjz2g7Zs3+W3FFg0+jtteGRhFUSC8psScOA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-05-03T10:12:52Z"
+    mac: ENC[AES256_GCM,data:cnp/x7rF7oeAurzYpZ/Ypg3OyXcT7otp9dzEu9qWvWtdLDkXNQIN8Kd0wjeXyuIPj2dAT3DwkO92rOJ9UQpIGqJ35KJCIX9XN4oHVt5nmJKfJS5SkhnFPEllkqd/HAPGqzTuVBQKpcZb7WwHMNRr+3Z8pyLidL0W6WSbMy16r5Y=,iv:LsL8XtgXrliPRI+1zMhaT6uhrrO6uU7i7I7xcvHJ7kc=,tag:g9aG0sf0kfX7TllnJYulFg==,type:str]
+    encrypted_regex: ^(values)$
+    version: 3.10.2
