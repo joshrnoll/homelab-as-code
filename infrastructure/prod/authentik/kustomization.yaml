@@ -4,6 +4,13 @@ resources:
   - ../../base/authentik/helmrelease.yaml
   - ../../base/authentik/helmrepository.yaml
   - ../../base/authentik/namespace.yaml
+secretGenerator:
+  - name: authentik-values
+    namespace: authentik
+    files:
+      - values.yaml=values.enc.yaml
+configurations:
+  - kustomizeconfig.yaml
 patches:
   - path: patch.yaml
     target:

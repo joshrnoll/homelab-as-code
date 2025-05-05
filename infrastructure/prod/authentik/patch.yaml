@@ -8,19 +8,19 @@ spec:
         server:
             ingress:
                 hosts:
-                    - ENC[AES256_GCM,data:VRE/bxzXMrriNZzoXW0dEcqcHRLx/WQyDtsBWQ+NGQ==,iv:6TYxaN0Tx+VVWV09mQELfGg63te3qgpFT8C08QS9qx0=,tag:5cePlw/CUqqhr6bJ6Qskmw==,type:str]
+                    - ENC[AES256_GCM,data:JG4yl9UswhyUoNJT7x2PH1KkwkTSfvaLhXN8rctt+A==,iv:Pkkecayn8uJ0DkW5UkFhkXZOc4dwMAETPomsYnBhgrY=,tag:bXZ0IAdjxYKejOEClk4Jww==,type:str]
 sops:
     age:
         - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUlh1TlkvNzN4Mk5jMjJL
-            RDlMbHhOV2ZacWloTXVacjBFb0RQV3dOcmkwClpwQU9HQkQ1ZEtRNWlvSGtabm5B
-            K3RNS1pYZlJuM2xyVVlEOVN2ZUtHT1EKLS0tIHZOU3B4WUozdW9ES2UrTFlyRk9Z
-            Nyt1WFJkdTNzdUVOWnJ4aVRYLzJValkK9JU5mLayIGnBQ8iJmz9fh0rMT3NVh5tv
-            1lr/iUYniMvmmbpddqNJHraDXbh0lDC1Qs0XSgAE0uONm56f4ZSa4A==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrMzJOZHpJckd2eng5VGJz
+            TC9XT1QxRWdHZS9aREhmNk41UjlhSEhkQ3pvCndhQjFTd3NHbGduL2RsR3ZEVnA4
+            L0Y0bGdSd1ZzK3A0bHBaQ1NrRWFpNk0KLS0tIHUrK2tmcUdVNnRvRTJISkVuaEJO
+            azRaQlNoSTdPNG5YS1ZEVk1RVGRYa2MKud+7/704gGUIa1kqbs5wWI54RKafhUva
+            naSJgC+86re6CjqoJRmM4NHNsRNjDPulDX35E8gBa3FA/W/rZDjZRg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-03T11:08:03Z"
-    mac: ENC[AES256_GCM,data:Gzs15YpOhNbo6KgTC5v2ajQkKfijoE1nMAxHRmbJcdegmVwZ+qcgHLeYxkchRedFg3qjw7S8dOuo/HNTH0N8qZcZqSUS5DTAMT41ulP4QAHcOpP8/RWJrGH0qNn6jR2kHA5PQwPQDU+Rd8H5H3h9N7T5no4qWGEJMz2fEz2Nw8o=,iv:waNfmt+brbGGfzTdz+bugKwo18hAY7nxO/5X3fIiyiU=,tag:U3HdnMS3WNJuIOHEAZvIqw==,type:str]
+    lastmodified: "2025-05-05T11:32:22Z"
+    mac: ENC[AES256_GCM,data:CusVcNTA7UAo0akIJ8MURUl3/PG2hQv+r5vtor049CD8LU0ONYUtKfOEeK5dBD45bj9I/k8Ucicg2s+BqaB+36Db7iapUgkaeXl62dfzoCjhZPfkRz6/kutOG/T3ZbblyJ7PwUu9rmVgs1o5hwcPl6LDe5JsqgMIHvbTV9EFoNg=,iv:0uf3maU7flnPWCtPtRkdBQmnsRb3TLCkxx49zPI8nc0=,tag:4+9LIrgXnFhROmwqEHVpKg==,type:str]
     encrypted_regex: ^(values)$
     version: 3.10.2

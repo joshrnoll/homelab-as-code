@@ -13,48 +13,8 @@ spec:
                 kind: HelmRepository
                 name: authentik
                 namespace: flux-system
+            valuesFrom:
+                - kind: Secret
+                  name: authentik-values
             interval: 5m
-    values:
-        global:
-            namespaceOverride: ENC[AES256_GCM,data:UQn+oI6TKk1T,iv:D805p7IgbR6JPeJ0+LXztcY8KYHlHsi+9ogfaJp/KDg=,tag:tQJW4MgsQGSPz1XmgRnIMg==,type:str]
-        authentik:
-            secret_key: ENC[AES256_GCM,data:Kh/+uZFMsGJA76MZAPnpz3Kcgn5HYxiz97S2X5+wR+O3FU2Ar+QFmmNrOdLIBkrdY6toOZ6Z94UX4CtBuR/7UEMHZd0uZUTGyBQnR6FZMPY=,iv:lf5+z3LHaUbk5vs1/S4Kimdeco8bWmZWrm29ObYHrtU=,tag:4QF1MMEteKgT4Qyz+YhyYw==,type:str]
-            error_reporting:
-                enabled: ENC[AES256_GCM,data:VN8aNxw=,iv:vBmjdkOFr7dydN4L3Q6Vwr0ClzieyogKXPXpHdDL5tE=,tag:JO1zfjDPJRT7LVqdT8Br+g==,type:bool]
-            postgresql:
-                password: ENC[AES256_GCM,data:/VT7DT/aYj/tYbETFjyGfMxcK20=,iv:jzK1nSbSdL4qnW715U+E3YcOKVFPczUw87hBoFs/Cwg=,tag:hBjC2Pm4jJych1FAUM0oow==,type:str]
-            email:
-                host: ENC[AES256_GCM,data:Mu8Xeokf2rVYs6YDmog=,iv:m8hnUaJi4puIUWfRnpLeCyw0LassBVLd1zKtI9v1yWw=,tag:6Md7b5pxre74gz9Th67vlw==,type:str]
-                port: ENC[AES256_GCM,data:ODa+,iv:/E/NfobMwdKDpjpoxv8KAO/u9vdIvXMcGzpRN8nj5Ms=,tag:yBf5DVptW0NAdvY6x4KG0Q==,type:int]
-                username: ENC[AES256_GCM,data:wHUcTsCNBXI5g6azVZGdGiEiv6/a,iv:1ZAQb2PLc7FACZcip2xkewWuZOPrIhGu3G/jIb3k3ps=,tag:kW1qQyAKrD2CRKx6vnnYOg==,type:str]
-                password: ENC[AES256_GCM,data:6j5T4aorxDXueE2VUb3klsB/QQ==,iv:nFv5oZWK7wdUB68rDox4glfpDZp3y+jVDfSw2sWEfXw=,tag:ATzgwkLN2wOO9d+YlG/Tcw==,type:str]
-                use_tls: ENC[AES256_GCM,data:xcNbTQ==,iv:pumLPfiY9tIMmN5rR/Z7TACBE373TsxVvEX5CC2oQnk=,tag:V7qlWJb4rU6cVxvl0OE+fA==,type:bool]
-                timeout: ENC[AES256_GCM,data:f5s=,iv:6OJKzelQBP0qeo/pZWONF9mrF+GjmEYfUX5yipvn1lI=,tag:fbd9SsUthsvqIE40Dswwcw==,type:int]
-                from: ENC[AES256_GCM,data:i3LWcWKd4E7kXhLVnKgGiLTMf03R/YJF1l/+1fZhNLl4CeAQacr+qDjJvXCwoMA=,iv:aC0Tcw5CWfb06paOzMAs/RdWfCRLgbGE+NRxzyUv4H8=,tag:/xpTbOlBTakEQZ7hsvLKTQ==,type:str]
-        server:
-            ingress:
-                enabled: ENC[AES256_GCM,data:u0gqtg==,iv:szdYpnklEkNNVIYQhNBVJ/JNcIftbR3hHKBQ/ojrpgQ=,tag:chWxNEjNGGO/OUAHxrM7jA==,type:bool]
-                ingressClassName: ENC[AES256_GCM,data:gsYdl933Zw==,iv:vdc2kYijXV3quoKESHFIIMMjxiAWqscoP2QixVQr7yU=,tag:tQqRoD/H89QG5m+OZXka0g==,type:str]
-                hosts:
-                    - ENC[AES256_GCM,data:R9Dg5DHCbUB+1XLSZDrm1na8J/KsJFs=,iv:xaDX36gIW8L5LeA7XA3cni+FJmzwtaL3KGEQ9DgKNt8=,tag:KDXHmzXPAGLrDuq2upTGng==,type:str]
-        postgresql:
-            enabled: ENC[AES256_GCM,data:/DzRXQ==,iv:/jXJ+zolrFq2cPf0Gyglnug1hsXU6WLD46CZR7ISUSQ=,tag:mq059CwljuFyzBSpU0eRWg==,type:bool]
-            auth:
-                password: ENC[AES256_GCM,data:3rv4UuKpo+zdYAhugoliNkD9+90=,iv:B2ipzWq5XbebB8FWZF4mir3fGf1Suix1HaHdjLGVo3o=,tag:rm/QJrP/XV0QTLFVUd75zg==,type:str]
-        redis:
-            enabled: ENC[AES256_GCM,data:yUgsMQ==,iv:FjXAfsiofS2zoM3zP5gYd+Fj5Kp5z8FkphTxL99dQoI=,tag:rfK3i6RVpLPcnKvPpv7AmA==,type:bool]
-sops:
-    age:
-        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4U1hJK3FGdzQzNkE1dE1Q
-            bkNsWlNJQ2ZEVDErcHZDWWNuU3dnbXpJNEg0ClVKcFplNnlKdzMwRDFJOUdWUnZT
-            LzNmMWpiR2ljeE1WOG5lU2Y3VDFIQkkKLS0tIGdmODRVbzRZb1ZqZUcwOU82Tkl1
-            ZXVvcUpRQ2ZVc01vSm5PYW9UOXFNckkKp365PljExggJBtGg4z3pIcw0gZ/EzBN4
-            UvBtiqOPMGozddPfjLxKdLVkB6MQ9p25sNIML4/TW60ijGbkmIJZiw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-03T11:07:02Z"
-    mac: ENC[AES256_GCM,data:YOIZJXVTcrlvrc9lyxf3HaEvBn5Q+LZLVVtyv9ZFVZnkrhNfYGo4Og9dgknkmZFvoAx0uSHVdpA/hWDV6wUP8QWLw0CyeehJZ3erlTl8PAIZBiSDX7008fbStAVzG21n/hEPKFIGsS+8W2rewQqLACbla80GrkwJaB5TAzNyaa0=,iv:4Q0X9hlbt05hQ3SheriOW6KxQS/tHUJMxgunFQHji8I=,tag:x55K24g6NBNWfLJlESEqEg==,type:str]
-    encrypted_regex: ^(values)$
-    version: 3.10.2
+

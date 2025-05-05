@@ -1,0 +1,43 @@
+global:
+    namespaceOverride: ENC[AES256_GCM,data:729m2du2iVt3,iv:FcjxYpwBEh/bDki1IN+FaRigNJdMs1sa18BX+FALyFo=,tag:8/lU57iRIuDCWOhb7AFVFw==,type:str]
+authentik:
+    secret_key: ENC[AES256_GCM,data:8IPUY0a4gKbBb2PQiGKxjO6q6uavEcx4z8jH6CkgmG9+IvkP8HVbOkCs3DD54UB0U0I78Bt+oMjBmnWsTrXwOrbblCbvoNs+K5zwWEk7xN0=,iv:m0E5EOSyD62IsvHHUhHboU4rzmIPE80Jim5LvSd1oyA=,tag:P8TGTmo8+Bq2bofJ9zDrzQ==,type:str]
+    error_reporting:
+        enabled: ENC[AES256_GCM,data:3S1d/dU=,iv:MPx9GWzyAkf2k3UpS4WP5eGicldHG445MLyGGHq6org=,tag:SesffuFbcjksQ2hAeVNY2Q==,type:bool]
+    postgresql:
+        password: ENC[AES256_GCM,data:aROPIIRHFL3DeSo66KWYAg/zn8A=,iv:QJBDTZ+iIMCf+8uX25BtGDBfWXXlGvKPlpkNkju+rGc=,tag:RSGSVeotzds0FC+1zBCYKA==,type:str]
+    email:
+        host: ENC[AES256_GCM,data:HbIPtr6K5KK2Sulf+CM=,iv:Rp/5RK08xCJZgdxvSdjChvp7/jp0dIwMKrUEKN8FQSE=,tag:dt6kvTWROOxJsQ+Eif+68w==,type:str]
+        port: ENC[AES256_GCM,data:hpOR,iv:KXhI040etSe9Ud8OI1/+QjFXw/1+7N+qr1xTM4BvcNQ=,tag:4cUTMTh9bZJ7LZTd13xg3g==,type:int]
+        username: ENC[AES256_GCM,data:WtsTxWMB6PhLRGndkL4h97nCuRfS,iv:ACBvPLjCITm+rs7bv+s+33qB8JcEUTkxe0DjfAVrPek=,tag:I02K5DPR98UBkVTCK9mRQQ==,type:str]
+        password: ENC[AES256_GCM,data:XtoHWUd4nJ4jdckyuG2bKS3IKw==,iv:s7O0ePanN73S3q35keP4jGxPDjOsjg3iWUr3bj9Ciso=,tag:I9Qg/hVITenTVTqUDo6WIA==,type:str]
+        use_tls: ENC[AES256_GCM,data:txluVg==,iv:bmnnEQ3Zrb/gbTuguJG6sQa4mpdlNGOQ5M8yDw3mYjY=,tag:DdtcTea4LMH6RKCUH0olTg==,type:bool]
+        timeout: ENC[AES256_GCM,data:Css=,iv:8reAaClESvgYCFoETaazw35SU/1VPqScKkiIvB/Af6A=,tag:Qq7qBg5YC1Xzn4a54U5xtQ==,type:int]
+        from: ENC[AES256_GCM,data:aesmiSkf3olpK2ZF01ll2EWUr5kZYkarSAKi5bxWcES9Vi7U0CZ3rBO/nyeokqQ=,iv:qugOMxRReWqslBtqQn2FM1q9i41XMvYKqANTHHWOU1E=,tag:TdNPpMyK968CxyrdBDjDSA==,type:str]
+server:
+    ingress:
+        enabled: ENC[AES256_GCM,data:TBCyXQ==,iv:SF9WhklgfSidMjuTAPqURf3Ee1b/bAS4RhxElbmX7rU=,tag:5X4Rdj4A2b/cp4EnuP4lrA==,type:bool]
+        ingressClassName: ENC[AES256_GCM,data:leCJrursNg==,iv:TY4lcO01AnJvBp+i+wCJ018ZVp5ftGqRKIMYrWIOnrM=,tag:v4rzFU6vrBJoXbPQiVPnWw==,type:str]
+        hosts:
+            - ENC[AES256_GCM,data:UJafOwGWHbZsVEqDBqRmNpCdfZy0M9I=,iv:eaZHSO6uHsGhBGKa2oaIuOOL5LckcLNorCcAOCGFZzg=,tag:H772KVH/Oy6XCIJVR8lyBA==,type:str]
+postgresql:
+    enabled: ENC[AES256_GCM,data:8/1izQ==,iv:tJRRcb2NcIggaeTW30ccMfeI8GXEA6B3P3HeW9cxick=,tag:aCqEtEwP8LxfcXUZEAhLMw==,type:bool]
+    auth:
+        password: ENC[AES256_GCM,data:fXtm30M++s6ADhKUm0k3vWnAiG8=,iv:ycTjgfU8cJbVGSjROax4u168MREOvJquQlgkkL/QtKE=,tag:ZzRexOUQJG03RTbnVlNLoQ==,type:str]
+redis:
+    enabled: ENC[AES256_GCM,data:riLr3g==,iv:tbBzZu/2GVuxjKdeNFxZy2txFHGQC5TOJa4Fdn0aQjw=,tag:OcEDqHs7LkXa8FIQ0BTGWQ==,type:bool]
+sops:
+    age:
+        - recipient: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBnREMvWWJqcEV0bWVCWVVq
+            cG1tSUZycmx1M1U2dFo4N2dKaFFSTFBCaG5FCkhMSnRxUytaVHZBSzdIMmVvOUVm
+            YzNCYUl0KzdBK2JQaHg0dHMzZFJaWm8KLS0tICtMRDZTUTVISVF0SStrZ0tDQXlh
+            V21DYUJPS0ZSSUNzZ0MwdjVZSzZpbmMKT/oxJ5Esx8rnEfdXYIQ8H6gaL++pB77s
+            nOjIxK9yUc3yui+zB35NpqA0nPwXgtIobDQpkcGw04uHej3skJcqeA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-05-05T11:26:07Z"
+    mac: ENC[AES256_GCM,data:tnAoQZWWR8Q5Fh9W69PXLiHRxdA6O1luvdzjS5i/FqVVSfVrWq5zCzARCouM6LCWveq+kPm3o+zp45FgZLRSI6uP+aM6WFp54M9/S2pBSuGeWq7BRMewTdWVO7+E8ynJKhDSS6EUpM8ObOqAQubFxfEVQObIhh+iwFRxR3loYFg=,iv:f/jiL+OkfsmKcpAx65GpkDsVjzjwCxEtImulLSDd9PE=,tag:1Jx1cmepj4dQb2PuiSMM5w==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.10.2

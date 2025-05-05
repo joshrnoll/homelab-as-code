@@ -1,4 +1,3 @@
 creation_rules:
-  - path_regex: helmrelease.yaml
-    encrypted_regex: ^(values)$
+  - path_regex: values.yaml
     age: age18dvn87z8hq2e0kak3f5d06xn9ynpcmfkkvep4ch8z32m7hkma3xsmgez3x
