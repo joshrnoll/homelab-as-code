@@ -6,15 +6,14 @@ metadata:
 spec:
     interval: 5m
     chart:
-        spec:
-            chart: authentik
-            version: '*'
-            sourceRef:
-                kind: HelmRepository
-                name: authentik
-                namespace: flux-system
-            valuesFrom:
-                - kind: Secret
-                  name: authentik-values
-            interval: 5m
-
+    spec:
+        chart: authentik
+        version: '*'
+        sourceRef:
+            kind: HelmRepository
+            name: authentik
+            namespace: flux-system
+        interval: 5m
+    valuesFrom:
+        - kind: Secret
+            name: authentik-values
