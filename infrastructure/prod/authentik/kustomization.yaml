@@ -11,9 +11,3 @@ secretGenerator:
       - values.yaml=values.enc.yaml
 configurations:
   - kustomizeconfig.yaml
-patches:
-  - path: patch.yaml
-    target:
-      kind: HelmRelease
-      name: authentik
-      namespace: authentik
