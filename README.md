@@ -5,8 +5,9 @@
 https://joshrnoll.com/my-plan-for-homelab-as-code/
 
 ## Docs
-- [Talos Cluster](/talos/TALOS.md)
-- [FluxCD](/clusters/FLUXCD.md)
+- [Talos cluster configuration and management](/docs/TALOS.md)
+- [Managing GitOPS with FluxCD](/docs/FLUXCD.md)
+- [Managing secrets with SOPS and Age](/docs/SOPS.md)
 
 ## Workflow Visual
 
@@ -18,7 +19,7 @@ On commit, this repo will eventually do the following:
 
 | Feature | Tool | Method | Status |
 | :--- | :--- | :--- | :---: |
-| Configure/baseline Proxmox nodes  | Ansible | Gitea/GitHub Actions | :construction: |
+| Configure/baseline Proxmox nodes  | Ansible | Gitea/GitHub Actions | 🚧 |
 | Install VM templates on Proxmox nodes  | Ansible | Gitea/GitHub Actions | ❌ |
 | Deploy VMs on Proxmox  | Terraform | Gitea/GitHub Actions | ❌ |
 | Configure/baseline VMs and other servers | Ansible | Gitea/GitHub Actions | ❌ |
