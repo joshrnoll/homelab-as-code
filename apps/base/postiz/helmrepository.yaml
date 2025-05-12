@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: postiz
+spec:
+  interval: 30m
+  url: oci://ghcr.io/gitroomhq/postiz-helmchart/charts/postiz-app
