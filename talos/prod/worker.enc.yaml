@@ -176,7 +176,7 @@ machine:
         # The disk used for installations.
         disk: /dev/sda
         # Allows for supplying the image used to perform the installation.
-        image: factory.talos.dev/installer/58e4656b31857557c8bad0585e1b2ee53f7446f4218f3fae486aa26d4f6470d8:v1.9.4
+        image: factory.talos.dev/installer/58e4656b31857557c8bad0585e1b2ee53f7446f4218f3fae486aa26d4f6470d8:v1.10.1
         # Indicates if the installation disk should be wiped at installation time.
         wipe: false
         # # Look up disk using disk attributes like model, size, serial and others.
@@ -580,7 +580,7 @@ sops:
             YnhabFNJamZLZGw1WFdaUld6WHFLMkkKS5TC0dFwe6kASq8IWdPnLcJGg+Eh+1t7
             Lp22OquFioRs78b0w8g+ief50fXvUkcuREf3Z5Od2GsMYZWwdCTswQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-04-15T18:14:24Z"
-    mac: ENC[AES256_GCM,data:CXWbZVvlqMKAgY5Y1Qxr7HreOAWgN6Vr4yeGvIaNuYKfrd0JDWxBL252pc/z2o4HByFcyhg5lxVKA0fQoKzfZw2zwNoH5Uh69YC87xLDYqz3uTrtB165s76RM0Fd9+br5c8VEIWynoVWy9/truC/M7DkVlEXOle4ASiiiIen80E=,iv:3C1szpCwRL4w0F5JPjhHAXd6MHqQu9jLIZLpl8z3qbE=,tag:amG5euVdjKNIhkA4E23PCg==,type:str]
+    lastmodified: "2025-05-12T09:57:37Z"
+    mac: ENC[AES256_GCM,data:Y6bEnwAy1+Ahwg1CUuwvPyC5QseUNNHzrCUF2Hc9jeBHoebXLKugAyt6kbJC9TMJzyFaPrmClZyntSCyiApKWJth2iIis/ureiPAVAzzVuFtUtOMLsyhtTy7wU0Fep3N2ol8CKuuX2PHMSn4VwHKyfmLqgIjZdGTB1CfzKXN88A=,iv:bv+xKqbisDJh169gSFhlY8clO2H68fYcpSzAzemHvcU=,tag:klrKZZ+gSXU87X6GgrBWkw==,type:str]
     encrypted_regex: ^(crt|key|token|id|secret|secretboxEncryptionSecret)$
     version: 3.10.2
