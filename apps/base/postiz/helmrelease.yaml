@@ -6,13 +6,14 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: postiz-app
+      chart: postiz
       version: '*'
       sourceRef:
         kind: HelmRepository
         name: postiz
-        namespace: flux-system
+        namespace: staging-apps
       interval: 5m
+      releaseName: postiz-app
   valuesFrom:
     - kind: Secret
       name: postiz-values
