@@ -4,7 +4,7 @@
 
 There are two clusters in my environment -- **dev** and **talos**. The **dev** cluster is a single-node cluster used to test out a new service's compatibility with Kubernetes. Once compatibility has been determined and a rough base of required manifests have been written, the service will be moved to the primary **talos** cluster, on which there are two environments -- **staging** and **prod**.
 
-These two environments are separated via Kubernetes namespaces. The **staging-apps** namespace is used to place a service that has been previously validated on the **dev** cluster. The staging environment is identical to the production environment (since it is on the same cluster... Ideally, I would have a separate, but identical cluster for the staging environment. But... this is a homelab). 
+These two environments are separated via Kubernetes namespaces. The **staging-apps** namespace is used to place a service that has been previously validated on the **dev** cluster. The staging environment is identical to the production environment, separated only by namespace. Ideally, I would have a separate, but identical cluster for the staging environment. But... this is a homelab. 
 
 A visual of the workflow looks like this:
 
@@ -82,7 +82,7 @@ flux bootstrap gitea \
 
 #### 2. Bootsrap the **talos** cluster
 
-The main Talos cluster is bootstrapped against the **main** branch, pointing to the ```clusters/talos``` folder. First, ensure your ```kubectl``` context is set to the talos context:
+The primary Talos cluster is bootstrapped against the **main** branch, pointing to the ```clusters/talos``` folder. First, ensure your ```kubectl``` context is set to the talos context:
 
 ```bash
 kubectl config use-context talos # Ensure kubectl is set to the talos cluster context
@@ -101,6 +101,22 @@ flux bootstrap gitea \
   --hostname=gitea.mydomain.com
 ```
 
+### Pushing to staging
+
 Though this cluster is *bootstrapped* against the **main** branch, it will also reference apps committed to the **staging** branch. Staging and Production are separated via namespaces. Apps will be automatically placed in the correct namespace due to the use of ```spec.targetNamespace``` field in the Kustomization resource. 
 
-Refer to the ```clusters/talos/apps-prod.yaml``` and ```clusters/talos/apps-staging.yaml``` to better understand how this works.
+Refer to ```clusters/talos/apps-prod.yaml``` and ```clusters/talos/apps-staging.yaml``` to better understand how this works.
+
+### Prod and Staging Apps Kustomization
+
+In the root of both the ```apps/prod``` and the ```apps/staging``` folders, there is a ```kustomization.yaml``` file. This file will define which sub-directories should be reconciled for change on the cluster. For example, if I am working on Uptime Kuma's configuration, I can continue to push and make changes to to the ```apps/base/uptime-kuma``` and ```apps/staging/uptime-kuma``` directories without these changes being affected on the cluster until I reference the ```uptime-kuma``` sub-directory in the ```kustomization.yaml``` file:
+
+```YAML
+# apps/staging/kustomization.yaml
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespaces/namespace.yaml
+  - uptime-kuma
+```

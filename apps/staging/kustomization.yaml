@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - namespaces/namespace.yaml
   - uptime-kuma
+  - postiz
