@@ -6,7 +6,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: postiz
+      chart: postiz-app
       version: '*'
       sourceRef:
         kind: HelmRepository
