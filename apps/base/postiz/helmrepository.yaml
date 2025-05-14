@@ -3,5 +3,6 @@ kind: HelmRepository
 metadata:
   name: postiz
 spec:
+  type: "oci"
   interval: 30m
   url: oci://ghcr.io/gitroomhq/postiz-helmchart/charts/postiz-app
