@@ -29,7 +29,7 @@ ingress:
 extraVolumes:
     - name: ENC[AES256_GCM,data:Zium7wIBm9fnB/sW3jjtBbM=,iv:92msiY9XefvKxKfGJUGPdbocUGvKFT1g4YBnYqAUrMU=,tag:Pd3B3JRTpCYzgjj6SDSLCg==,type:str]
       persistentVolumeClaim:
-        claimName: ENC[AES256_GCM,data:gAEiSUFwObMqUA==,iv:+4H2/C0J+uRw5tAUgSNFOhhoyvmRrr2Xoji3mv479JY=,tag:61sltP9FVuMoCQMgNoSUdQ==,type:str]
+        claimName: ENC[AES256_GCM,data:Cng3ZwwRHT79U75GjFbaCAkg,iv:nCUFfDlO2CXW4oVhn6O42IXhZHIvUyw7G8uwhD/H4AA=,tag:0bK6Ne2eT5lw+WeZJzEOJg==,type:str]
 extraVolumeMounts:
     - name: ENC[AES256_GCM,data:e3lzvR8wP/mGgMS2VSFZ/qU=,iv:V/uKCMrbKAinoEgtv4EJfCFcRQuvYhBSqC5dHUt10BQ=,tag:MuOilvyGVq1L6DQ55FTh8g==,type:str]
       mountPath: ENC[AES256_GCM,data:LlQWvERrIpw=,iv:xPkfc9Mc452wZdvjdk5QDJvstQWvlDQKHHCn8pY2pgI=,tag:Qqdfw0g0SP9OFYoFpG43FA==,type:str]
@@ -63,7 +63,7 @@ sops:
             RjNucnlBZlBzVVNKQ2ZFSHR1Sk5lWnMKti5Ej205bZjAwOAggCiQ1XVCDBMVxGYI
             WDt4z+Qq1BhelP2UkCqkflZEEznRDKaVAGQXZuBlhWP59zrNLPWj7Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-05-12T10:56:08Z"
-    mac: ENC[AES256_GCM,data:T4HgWrT1+JeBHCYQyOcpainWVbaa7edISjBLn0x2qTi8HusbOQ+jCFk4euv6wvvvHt7LfYXZe7MPpB+UHOUfZvZohJoWOA/A2HRp5S1I3V8W6FaJ99tGZCRfXmC/OcbOSbtHW2SJwXS4djdZRCzGAqNzrEY+cbsa0S170pA9u74=,iv:UlGDEB+gI9gEvfhC3F+Zrlohmmnh6fgnkucbhDDw/i0=,tag:IIsIyLtsivWVy4N4Yq5pDQ==,type:str]
+    lastmodified: "2025-05-15T09:45:37Z"
+    mac: ENC[AES256_GCM,data:O2Ljsvn954LT5WSr2J0AKuJ3lpzQ8FULCKqOpkwM+RL3jWCpBC5QSc9/gxw20i6p8i5yiVRheiSeo0EpFhukiHFWmF/sTwjW/UC/l4x4TRFMKfxviYxAaXozzWdd9rhfmGcRvZO46rOidGNH5w5ogi/HoHNLRwNrxVo3Ae+ZoS8=,iv:5nUQO8fjWXkiz+Q/QNIQ1WyjcRqAY6/N91xQHMYPb9k=,tag:2Js3Xk09iYPoS2RMTdmncw==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2
