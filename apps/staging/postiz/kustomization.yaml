@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../base/postiz/helmrelease.yaml
   - ../../base/postiz/helmrepository.yaml
-  - ../../base/postiz/pvc.yaml
+  - ../../base/postiz/pv-pvc.yaml
 secretGenerator:
   - name: postiz-values
     files:
