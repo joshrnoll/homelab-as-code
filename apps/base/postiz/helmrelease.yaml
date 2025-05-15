@@ -7,7 +7,7 @@ spec:
   releaseName: postiz-app
   chart:
     spec:
-      chart: postiz
+      chart: postiz-app
       version: '*'
       sourceRef:
         kind: HelmRepository
