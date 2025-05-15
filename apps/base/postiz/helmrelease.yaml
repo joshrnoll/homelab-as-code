@@ -4,6 +4,7 @@ metadata:
   name: postiz
 spec:
   interval: 5m
+  releaseName: postiz-app
   chart:
     spec:
       chart: postiz
@@ -13,7 +14,6 @@ spec:
         name: postiz
         namespace: staging-apps
       interval: 5m
-      releaseName: postiz-app
   valuesFrom:
     - kind: Secret
       name: postiz-values
