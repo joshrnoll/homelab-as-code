@@ -1,5 +1,8 @@
 name: Baseline Proxmox hosts
-on: [workflow_dispatch]
+on: 
+  push:
+    branches:
+      - gitea-actions
 
 jobs:
   baseline_proxmox_machines:
