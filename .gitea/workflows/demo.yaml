@@ -3,17 +3,18 @@ on: [workflow_dispatch]
 
 jobs:
   baseline_proxmox_machines:
-    - name: Check out repository code
-      uses: actions/checkout@v4
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
 
-    - name: Run Proxmox baseline playbook
-      uses: ./run-ansible-playbook.yaml
-      with:
-        playbook_path: /workspace/joshrnoll/homelab-as-code/ansible/proxmox/main.yaml
-        inventory_path: /workspace/joshrnoll/homelab-as-code/ansible/hosts.yaml
-      secrets:
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
-        ssh_passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        ansible_vault_password: ${{ secrets.ANSIBLE_VAULT_PW }}
+      - name: Run Proxmox baseline playbook
+        uses: ./run-ansible-playbook.yaml
+        with:
+          playbook_path: /workspace/joshrnoll/homelab-as-code/ansible/proxmox/main.yaml
+          inventory_path: /workspace/joshrnoll/homelab-as-code/ansible/hosts.yaml
+        secrets:
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+          ssh_passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          ansible_vault_password: ${{ secrets.ANSIBLE_VAULT_PW }}
 
